@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.AppNewMapper">
+
+	<!-- 基本字段 -->
+	<sql id="Base_Column_List">
+			a.link as LINK,
+			a.linktype as LINKTYPE,
+			f.url as URL
+	</sql>
+	<!--   a.id as ID,
+			a.name as NAME,
+			a.link as LINK,
+			a.state as STATE,
+			a.linktype as LINKTYPE,
+			a.opentype as openType,
+			a.sort as sort,
+			a.needlogin as needLogin,
+			a.citycode as cityCode,
+			a.attachid as attachId,
+			a.apple as apple,
+			a.adr as adr,
+			a.wx as wx,
+			f.url as URL -->
+	<!--查询题头应用 -->
+	<select id="listApps" resultType="java.util.Map">
+		select
+		<include refid="Base_Column_List" />
+		from t_app_fy a left join t_news_file f on a.attachid = f.attachid
+		where a.state = 1
+		<!--  <if test="sys != null and sys != ''">
+	    and a.${sys} = 1
+	  	</if> -->
+		 order by a.sort desc
+	</select>
+	
+
+</mapper>

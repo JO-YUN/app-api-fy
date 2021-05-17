@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.AppLogMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.AppLog">
+		<result column="app_id" jdbcType="VARCHAR" property="appId" />
+		<result column="visit_date" jdbcType="VARCHAR" property="visitDate" />
+	</resultMap>
+
+
+	<!-- 应用ID 访问日期 设备信息 设备操作系统 -->
+	<!-- insert log selective -->
+	<insert id="insert" parameterType="com.mscs.app.web.model.AppLog">
+		insert into t_app_log
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				app_id,
+			</if>
+			<if test="visitDate != null">
+				visit_date,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="visitDate != null">
+				#{visitDate,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+
+
+	<select id="queryAppLogCountInfo" resultType="com.mscs.app.web.dao.pojo.AppLogVo">
+		select a.id as id,
+		a.name as name, count(b.app_id) as num
+		from t_app a, t_app_log b
+		where
+		a.id = b.app_id
+		group by a.id, a.name, b.app_id
+	</select>
+
+
+</mapper>

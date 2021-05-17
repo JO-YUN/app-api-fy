@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.AutoCityMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.AutoCity">
+		<result column="bzdm" jdbcType="VARCHAR" property="bzdm" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		bzdm
+	</sql>
+
+	<!-- 根据Token进行查询 -->
+	<select id="findBzdmByCode" resultType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from t_code t where t.fhdm in('area','city') and t.state='1'
+		 and bzdm=#{cityCode,jdbcType=VARCHAR}
+		<!-- state=1 and -->
+	</select>
+
+
+
+
+</mapper>

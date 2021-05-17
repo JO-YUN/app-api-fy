@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2,user-scalable=yes" />
+		<title>实名认证</title>
+		<link rel="stylesheet" type="text/css" href="./css/mui.css" />
+		<link rel="stylesheet" type="text/css" href="./css/mui.showLoading.css" />
+		<link rel="stylesheet" href="./css/details.css" />
+	</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="mui-content-padded" style="margin: 5px;">
+			<header>
+		        <div class="header-left"><a href="javascript:void(0);" onclick="goBackToApp();"></a></div>
+		        <div class="header-right"></div>
+		        <h4>实名认证</h4>
+    	     </header>
+				<form class="mui-input-group" name='feedback' method="Post">
+					<ul class="mui-table-view mui-table-view-striped mui-table-view-condensed" id="xinxi">
+						<!-- <li class="mui-table-view-cell">
+							<a id="head" class="mui-navigate-right"><img src="./img/photo.png"  />个人头像
+								<span class="mui-pull-right head">
+		                            <img class="head-img mui-action-preview" id="head-img1" alt="图片" src="" />
+		                        </span>
+							</a>
+						</li> -->
+						<li class="mui-table-view-cell">
+						<a>
+							<div class="cTitle mt5">
+						    <div class="fl">
+						        <img class="licont" src="./icon/webwxgetmsgimg (1).jpg" ><font color="#09B6F2">实名认证</font>
+						    </div>
+							</div>
+						</a>
+						</li>
+						<li class="mui-table-view-cell" id="name">
+							<a>
+								<input class="mui-pull-right mui-text-left input" placeholder="请输入姓名" /> <img class="licon" src="./icon/webwxgetmsgimg (2).jpg" /><font class="fontv">姓名</font>
+							</a>
+						</li>
+						<li class="mui-table-view-cell" id="numberid">
+							<a>
+								<input class="mui-pull-right mui-text-left" placeholder="请输入18位身份证号" /> <img class="licon" src="./icon/webwxgetmsgimg (3).jpg" /><font class="fontv">身份证</font>
+							</a>
+						</li>
+						<li class="mui-table-view-cell" id="phone">
+							<a>
+								<input class="mui-pull-right mui-text-left" placeholder="请输入电话号码" /> <img class="licon" src="./icon/webwxgetmsgimg (4).jpg" /><font class="fontv">电话</font>
+							</a>
+						</li>
+						<li class="mui-table-view-cell" id="code">
+							<a>
+								<span>验证码</span>
+								<input class="codeyzm" placeholder="请输入验证码" />
+								<font color="#09B6F2" class="yzm">获取验证码</font>
+							</a>
+						</li>
+
+					</ul>
+					<div class="mui-card">
+						<div class="mui-card-header">温馨提示</div>
+						<div class="mui-card-content">
+						<div class="mui-card-content-inner" stytle="text-align: center;" >
+							<p style="font-size:18px;color:#FF0000; margin: 0 auto;">&nbsp&nbsp&nbsp&nbsp•为了您的用户安全<br />&nbsp&nbsp&nbsp•首次缴费请实名认证！</p>
+							</div>	
+						</div>
+					</div>
+				</form>
+				<footer>
+				<button type="button" class="btn" id="save">提交认证</button>
+				</footer>
+			</div>
+		</div>
+
+		<div id="sex" class="mui-popover mui-popover-action mui-popover-bottom">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#" data-val="1">男</a>
+				</li>
+				<li class="mui-table-view-cell">
+					<a href="#" data-val="2">女</a>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a href="#sex"><b>取消</b></a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="./js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/apis.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/mui.js" type="text/javascript" charset="utf-8"></script>
+	<script src="./js/mui.showLoading.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" src="./js/mui.view.js" ></script>
+	<script type="text/javascript" src="./js/nhsmrzUpdate.js"></script>

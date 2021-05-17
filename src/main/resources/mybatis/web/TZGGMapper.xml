@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.TZGGMapper">
+
+	
+		
+	<!-- 返回带分页通知公告数据-->
+	 <select id="queryAllTzgg"  resultType="com.mscs.app.web.model.TZGG">
+		<!-- 框架-分页头 --> 
+		<include refid="PageMapper.pageHead" />
+		<!--待处理数据--> 
+		<include refid="query_field" />
+		<include refid="query_condition" />
+		<!--  框架-分页尾--> 
+		<include refid="PageMapper.pageFoot" />
+	</select> 
+	<!-- 返回查询总条数 -->
+	 <select id="queryTZGGPageCount" resultType="java.lang.Integer">
+		<!-- 框架-分页统计 -->
+		<include refid="PageMapper.countHead"/>
+		<!-- 待处理数据 -->
+		<include refid="query_condition" />
+	</select> 
+	<sql id="query_field">
+		select 
+		TZID ,
+        BT ,
+        WJLJ1 ,
+        WJLJ2,
+        ZT ,
+       to_char(to_date(BJSJ,'yyyy-MM-dd hh24:mi:ss'),'yyyy-mm-dd') as  BJSJ,
+        BJYHID ,
+       to_char(to_date(FBSJ,'yyyy-MM-dd hh24:mi:ss'),'yyyy-mm-dd') as FBSJ ,
+        FBYHID ,
+        YDRS,
+        cityCode,
+         (select username from t_yh where t_yh.yhid= BJYHID) as editUser,
+		 (select username from t_yh where t_yh.yhid= FBYHID) as  publishUser
+	</sql>
+	<sql id="query_condition">
+	    from t_tz  where  zt=2 and cityCode=#{obj.cityCode,jdbcType=VARCHAR} order by FBSJ desc
+	</sql> 
+	
+	<!-- 获取最新通知公告列表 -->
+	<select id="queryZxTZGG"  resultType="com.mscs.app.web.model.TZGG">
+	    select * from 
+(SELECT 
+        TZID ,
+        BT ,
+        WJLJ1 ,
+        WJLJ2,
+        ZT ,
+       to_char(to_date(BJSJ,'yyyy-MM-dd hh24:mi:ss'),'yyyy-mm-dd') as  BJSJ,
+        BJYHID ,
+       to_char(to_date(FBSJ,'yyyy-MM-dd hh24:mi:ss'),'yyyy-mm-dd') as FBSJ ,
+        FBYHID ,
+        YDRS,
+        cityCode,
+        (select username from t_yh where t_yh.yhid= BJYHID) as editUser,
+		 (select username from t_yh where t_yh.yhid= FBYHID) as  publishUser
+    from t_tz 
+    where  zt=2 and cityCode=#{obj.cityCode,jdbcType=VARCHAR}
+    order by FBSJ desc )
+    where rownum &lt;3
+	</select>
+	
+	<select id="queryTzggById"  resultType="com.mscs.app.web.model.TZGG">
+	    SELECT 
+		    TZID ,
+		    BT ,
+		    WJLJ1 ,
+		    WJLJ2,
+		   ZT ,
+       to_char(to_date(BJSJ,'yyyy-MM-dd hh24:mi:ss'),'yyyy-mm-dd') as  BJSJ,
+        BJYHID ,
+       to_char(to_date(FBSJ,'yyyy-MM-dd hh24:mi:ss'),'yyyy-mm-dd') as FBSJ ,
+        FBYHID ,
+        YDRS,
+		    cityCode,
+		    (select username from t_yh where t_yh.yhid= BJYHID) as editUser,
+		 (select username from t_yh where t_yh.yhid= FBYHID) as  publishUser
+		from t_tz 
+		where TZID = #{tzid,jdbcType=VARCHAR} 
+		and zt=2
+	</select>
+	<update id="updateYDRS">
+	update t_tz set YDRS=YDRS+1
+	where TZID = #{tzid,jdbcType=VARCHAR} and zt=2
+	</update>
+</mapper>

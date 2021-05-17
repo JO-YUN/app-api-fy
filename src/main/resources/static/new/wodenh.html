@@ -1,0 +1,327 @@
+
+<!DOCTYPE html>
+<html>
+   
+	<head data-page="Anjuke_Home" data-kw="" data-ppc="" data-new-ppc='' data-soj-php="">
+		<meta charset="utf-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,minimal-ui" />
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta name="applicable-device" content="mobile">
+		<META NAME="keywords" CONTENT="" />
+		<META NAME="description" CONTENT="" />
+		<title>码上讷河</title>
+        <script src="js/jquery.min.js"></script> 
+        <script type="text/javascript" src="js/wodenh.js"></script>
+        <script type="text/javascript" src="../js/apis.js" charset="utf-8"></script>
+		<link rel="stylesheet" rev="stylesheet" href="css/User_Touch_Member_Home.css" type="text/css" />
+		<style type="text/css">
+			a {
+				color: #333;
+			}
+			
+			.mh-header {
+				background: #3a6ef8;
+				height: 150px;
+			}
+			
+			.lg-header {
+				background: #3a6ef8
+			}
+			
+			.lg-back {
+				padding-left: 10px;
+			}
+			
+			.foot {
+				width: 100%;
+				height: 45px;
+				margin: 0 auto;
+				margin-top: 20px;
+				font-size: 14px;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				z-index: 999;
+				background: #ffffff;
+				text-align: center;
+				border -top: 1px solid #b8b7b7;
+				padding-top: 5px;
+			}
+			
+			.foot1 {
+				width: 25%;
+				float: left;
+				height: 45px;
+			}
+			
+			.foot1 img {
+				width: auto;
+				height: 20px;
+				margin: 0 auto;
+			}
+			
+			#mh-name>span {
+				content: '';
+				background: url(img/gj.png) center center no-repeat;
+				background-size: 18px 16px;
+				border-radius: 40px;
+				height: 17px;
+				width: 15px;
+				top: -1px;
+			}
+			
+			#mh-adress>span {
+				content: '';
+				background: url(img/sf.png) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 15px;
+				top: -1px;
+			}
+			
+			#mh-dh>span {
+				content: '';
+				background: url(img/cs.png) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 17px;
+				top: -1px;
+			}
+			
+			#mh-fk>span {
+				content: '';
+				background: url(img/fk.jpg) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 17px;
+				top: -1px;
+			}
+			
+			#mh-yx>span {
+				content: '';
+				background: url(./img/yy.png) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 17px;
+				top: -1px;
+			}
+			
+			#mh-xtfk>span {
+				content: '';
+				background: url(img/aa.jpg) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 17px;
+				top: -1px;
+			}
+			
+			#mh-yh>span {
+				content: '';
+				background: url(img/yh.jpg) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 17px;
+				top: -1px;
+			}
+			
+			#mh-wsgr>span {
+				content: '';
+				background: url(img/wsgr.jpg) center center no-repeat;
+				background-size: 18px 16px;
+				height: 17px;
+				width: 17px;
+				top: -1px;
+			}
+			
+			#mh-wsgr1>span {
+				content: '';
+				background: url(img/fdj.png) center center no-repeat;
+				background-size: 18px 16px;
+				height: 18px;
+				width: 18px;
+			}
+			
+			.mh-num {
+				font-size: 12px;
+				color: #9b9b9b
+			}
+			
+			.mh-num1 {
+				font-size: 12px;
+				color: #000000
+			}
+			
+			.tcdl {
+				width: 100%;
+				margin-top: 20px;
+			}
+			
+			.tcdl2 {
+				margin: 0 auto;
+				width: 60%;
+			}
+			
+			.tcdl1 {
+				width: 100%;
+				height: 35px;
+				border-radius: 20px;
+				color: #fff;
+				background: #929292;
+			}
+			
+			.container1 {
+				min-height: 700px;
+				overflow: hidden;
+			}
+			
+			.mh-lg-a {
+				width: auto;
+				padding-left: 5px;
+				padding-right: 5px;
+				line-height: 12px;
+				border: 0;
+			}
+			
+			.footzi {
+				padding-top: 5px;
+				font-size: 14px;
+			}
+			
+			.mh-photo {
+				border: 2px solid #fff;
+			}
+			
+			.mingzi {
+				font-size: 12px;
+				background: url(img/yrz.png) center right no-repeat;
+				background-size: 20px 20px;
+				width: 40px;
+				height: 15px;
+				padding-right: 22px;
+			}
+			
+			.mingzi2 {
+				font-size: 16px;
+			}
+			
+			.mh-lg {
+				margin-top: 3px;
+			}
+		</style>
+
+    </head>
+    <body>
+	<div class="container1">
+        <div class="lg-header">
+	    <a id="lg-back-btn" href="javascript:history.go(-1)" class="lg-back">返回</a>
+	    <span class="lg-title">
+	            </span>
+	</div>
+    
+    <div class="mh-header">
+
+		<a class="mh-photo-wrap soj" href="#" data-soj="m_yhzx_dltx">
+			<img src="img/photo_default.png" class="mh-photo" id="headimg">
+		</a>
+			<br>
+		<a href="#" class="mh-lg  soj mingzi2" data-soj="m_yhzx_dltx" id="nickname">姓名</a>
+			<br>
+		<a href="#" class="mh-lg mh-lg-a soj mingzi" data-soj="m_yhzx_dltx" id="mh-rzxx">未认证</a>
+
+	</div>
+	
+<ul class="mh-list">
+	<li class="border-1px" id="history">
+	    <a id="mh-wsgr1" class=" g-next" href="#" ><span class="icon-comm"></span>缴费查询<em class="mh-num">查看</em></a>
+	</li>
+	<li class="border-1px">
+	    <a id="mh-wsgr" class=" g-next" href="#" ><span class="icon-comm"></span>完善个人信息<em class="mh-num"></em></a>
+	</li>
+    <li class="border-1px">
+        <a id="mh-name" class="g-next" href="#" ><span class="icon-comm"></span>国家<em class="mh-num">国家</em></a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-adress" class="g-next" href="#" ><span class="icon-comm"></span>省份<em class="mh-num">省份</em></a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-dh" class="g-next" href="#"><span class="icon-comm"></span>市县<em class="mh-num">市县</em></a>
+    </li>
+    <li class="border-bottom-10px">
+        <a id="mh-yx" class="g-next" href="#"><span class="icon-comm"></span>语言<em class="mh-num">语言</em></a>
+    </li>
+        <li class="border-1px">
+        <a id="mh-fk" class=" g-next" href="#"><span class="icon-comm"></span>意见反馈 </a>
+    </li>
+    <li class="border-1px">
+        <a id="mh-xtfk" class=" g-next" href="xtxx.html"><span class="icon-comm"></span>系统版本<em class="mh-num"></em></a>
+
+    </li>
+   <li class="border-1px">
+       <a id="mh-yh" class=" g-next" href="#"><span class="icon-comm"></span>优惠中心 </a>
+   </li>
+    
+</ul>
+
+<div class="tcdl">
+	<!-- <div class="tcdl2" id="tcdl2">
+		<button type="button"  class="tcdl1">退出登录</button>
+	</div>
+	 -->
+</div>
+<div class="foot">
+	<a href="indexnh.html">
+	<div class="foot1">
+		<div class="footimg">
+			<img src="img/mscs_874.jpg" >
+		</div>
+		<div class="footzi">
+			首页
+		</div>
+		
+	</div>
+	</a>
+	<a href="classnh.html">
+	<div class="foot1" >
+		<div class="footimg">
+			<img src="img/mscs_89.jpg" >
+		</div>
+		<div class="footzi">
+			缴费
+		</div>
+		
+	</div>
+	</a>
+	<a href="list_news_nh.html">
+	<div class="foot1">
+		<div class="footimg">
+			<img src="img/mscs_92.jpg" >
+		</div>
+		<div class="footzi">
+			资讯
+		</div>
+		
+	</div>
+	</a>
+		<a href="wodenh.html">
+	<div class="foot1">
+		<div class="footimg">
+			<img src="img/mscs_951.jpg" >
+		</div>
+		<div class="footzi">
+			我的
+		</div>
+		
+	</div>
+		</a >
+	
+	</div>
+      
+</div>
+	</body>
+
+
+	
+</html>
+

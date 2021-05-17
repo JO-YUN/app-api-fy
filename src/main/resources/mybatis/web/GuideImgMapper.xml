@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.GuideImgMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.GuideImg">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="weight" jdbcType="DECIMAL" property="weight" />
+		<result column="link" jdbcType="VARCHAR" property="link" />
+		<result column="state" jdbcType="DECIMAL" property="state" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,title,weight,link,state
+	</sql>
+
+	<!-- 查询引导图片 -->
+	<select id="queryGuideImg" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_guide_img where state=1 order by weight desc
+	</select>
+
+
+</mapper>

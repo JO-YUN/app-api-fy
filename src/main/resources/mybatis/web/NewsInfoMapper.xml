@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mscs.app.web.dao.NewsInfoMapper">
+   
+	<sql id="query_field">
+		select 
+		      id as id,
+		      title as title,
+		      intro as intro,
+		      context as context,
+		      user_id as userId,
+		      pic as pic,
+		      DATE_FORMAT(release_date,'%Y-%m-%d') AS releaseDate,
+		      read_times as readTimes,
+		      state as state,
+		      top_state as  topState,
+		      top_order_num as topOrderNumber,
+		      type_id as typeId,
+		      home_pages as homePages,
+		      (select name from t_news_type  where  t_news_type.id= type_id) as typeName,
+		      (select username from t_yh where t_yh.yhid= user_id) as publishUser,
+		      (select xm from t_yh where t_yh.yhid= user_id) as publishUserName
+	</sql>
+	<sql id="query_condition">
+		FROM t_news_info
+		 <where>
+			<if test="obj.id!=null and obj.id!=''">
+				 and id=#{obj.id}
+			</if>
+			<if test="obj.typeId!=null and obj.typeId!=''">
+				 and type_id=#{obj.typeId}
+			</if>
+			<if test="obj.homePages!=null and obj.homePages!=''">
+				 and home_pages=#{obj.homePages}
+			</if>
+			<if test="obj.title!=null and obj.title!=''">
+				  and title like CONCAT(CONCAT('%',#{obj.title}),'%')
+			</if>
+				 and state='Y'
+		</where> 
+		ORDER BY top_state desc,top_order_num asc,release_date desc
+	</sql>
+	<!-- 分页查询，返回list数据 -->
+	<select id="queryNewsInfoListPage" resultType="com.mscs.app.common.dto.resp.RespNewsInfoDto">
+		<!-- <include refid="PageMapper.pageHead" /> -->
+		<!-- 待处理数据 -->
+		<include refid="query_field" />
+		<include refid="query_condition" />
+		<include refid="PageMapper.pageFoot" />
+	</select>
+	<!-- 返回查询总条数 -->
+	<select id="queryNewsInfoForCount" resultType="java.lang.Integer">
+		
+		<include refid="PageMapper.countHead"/>
+		<!-- 待处理数据 -->
+		<include refid="query_condition" />
+	</select>
+	<!-- 根据主键查询一条详细数据 -->
+	<select id="queryNewsInfoById" resultType="com.mscs.app.common.dto.resp.RespNewsInfoDto">
+		<include refid="query_field" />
+		 <include refid="query_condition"/>
+	</select>
+	<!-- 查询全部数据 -->
+	<select id="queryNewsInfoList" resultType="com.mscs.app.common.dto.resp.RespNewsInfoDto">
+		<include refid="query_field" />
+		<include refid="query_condition" />
+	</select>
+	<!-- 修改数据阅读次数 -->
+	<update id="updateNewsInfoData" >
+		UPDATE T_NEWS_INFO
+			<set>
+				<if test="readTimes != null and readTimes != ''">
+				  read_times = #{readTimes,jdbcType=VARCHAR},
+				</if>
+			</set>
+		WHERE id = #{id}
+	</update>
+	
+</mapper>

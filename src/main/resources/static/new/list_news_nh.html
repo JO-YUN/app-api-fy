@@ -1,0 +1,251 @@
+<!doctype html>
+<html>
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport"
+	content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+<title>新闻列表</title>
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="css/swiper.css">   
+<link href="css/style1.css" rel="stylesheet" type="text/css" />
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script> 
+<!-- 
+<link href="css/amazeui.min.css" rel="stylesheet" type="text/css" />
+<link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+<link href="css/style1.css" rel="stylesheet" type="text/css" />
+<script src="js/amazeui.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+-->
+<script src="js/swiper.js"> </script>
+<style>
+body{
+	padding: 0; margin: 0;
+	font-size: 14px;
+	background-color: #f2f2f2;
+	font-family: "microsoft yahei";
+}
+a {
+	color: #333;
+}
+.head{
+	background: #307dff;
+	height: 49px;
+	width: 100%;
+	color: #fff;
+	line-height: 49px;
+	font-size: 18px;
+	padding-left: 10px;
+	text-align: center;		
+	position: fixed;
+	z-index: 999;
+		}
+		.head a{
+			color: #fff;
+		}
+		.fyjz{
+			width: 80%; margin: 0 auto;
+		}
+		pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+		    z-index: 3;
+		    color: #fff;
+		    cursor: default;
+		    background-color: #307dff!important;
+		    border-color: #307dff!important;}
+			.pager a{
+				color: #307dff;
+				font-weight: 550;
+			}
+			a{ 
+				color: #333;
+			}
+			.footerzi{
+				font-size: 12px;
+			}
+			.xwlb{
+				margin-top: 2rem;
+			}
+		
+			.bg-fl1{
+				background-color: #fff;padding-top: 20px; padding-bottom: 20px; padding-left: 20px; padding-right: 20px; width: 100%;margin: 0 auto; height: auto;margin-top: 20px;
+			}
+		.line1{
+			border-bottom: 1px solid #e0e0e0;
+			padding-bottom: 0.625rem;
+		}
+		.beijing{   
+	background: #023894;
+    text-align: center;
+    z-index: 4;
+    font-style: normal;
+    position: absolute;
+    right: 20px;
+    top: -20px;
+   }
+   a:hover{
+	   text-decoration: none;
+   }
+  .xiaotubiao{
+	  background-color: #023894; 
+	  height:60px; 
+	  width: 60px;
+	  line-height: 20px; position: absolute; 
+	  right: 5px;
+	  margin-top: -20px;
+	  color: #fff;
+	  text-align: center;
+	  padding: 10px;
+  }
+ .ziti1{
+	font-size: 20px; font-style: normal
+ }
+ .ziti2{
+	 font-size: 12px; text-decoration: none;font-style: normal
+ }
+   /* 上一页下一页按钮样式 */
+   .btn{
+	  display: inline-block;
+      padding: 5px 14px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 15px;
+      border-top-left-radius: 15px;
+	  border-top-right-radius: 15px;
+	  border-bottom-right-radius: 15px;
+	  border-bottom-left-radius: 15px;
+   }
+   
+   .nav{
+   width: 100%;
+   padding-top: 60px;
+   margin: 0 auto;
+  }
+ 
+    .nav li{
+    float: left;
+    width: 24%;
+    margin-bottom: 5px;
+    margin-right: 3px;
+    background-color: #9D9D9D;
+
+   }
+   .nav li a{
+    
+    text-align: center;
+     height: 30px;
+    line-height: 30px;
+   padding: 0;
+     color: #fff;
+    
+   }
+   .nav li a:hover{
+    background-color: #afaaaa;
+   }
+	  
+</style>
+</head>
+
+<body>
+	<!-- <header data-am-widget="header" class="am-header am-header-default  am-no-layout">
+	      <div class="am-header-left am-header-nav">
+	          <a href="indexnh.html">
+	            <span class="am-header-nav-title">首页</span>
+				<i class="am-header-icon am-icon-home am-icon-sm"></i>
+	          </a>
+	      </div>
+	      <h1 class="am-header-title">新闻列表</h1>
+	      <div class="am-header-right am-header-nav"></div>
+	</header>
+	<nav data-am-widget="menu" class="am-menu  am-menu-dropdown2" data-am-menu-collapse> 
+	    <a href="javascript: void(0)" class="am-menu-toggle">
+	          <i class="am-menu-toggle-icon am-icon-bars am-icon-sm"></i>
+	    </a>
+	    <ul class="am-menu-nav am-avg-sm-4 am-collapse fenlei"></ul>
+	</nav> -->
+	
+	<div class="head">
+		<a href="#">新闻列表</a>
+	</div> 
+	<ul class="nav" style=""  id="fenlei">
+   <!-- <li><a href=" ">111</a></li>
+   <li><a href="">111</a></li>
+   <li><a href="">111</a></li>
+   <li><a href="">111</a></li>
+   <li><a href="">111</a></li>
+   <li><a href="">111</a></li>
+   <li><a href="">111</a></li>
+   <li><a href="">111</a></li> -->
+  	</ul>
+  	<input type="hidden" id="newsTypeHidden">
+	<div class="container">
+		<div  class="swiper-container" style="margin-top: 10 px;" id = "newTopOne">
+			<div class="swiper-wrapper" id="newTop" ></div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+		</div>
+		<!----------------新闻列表--------------------------------->
+		<div class="xwlb row">			
+			<ul>
+				<!-- <li class="bg-fl1 " id="newTopTow"></li> -->
+				<li id="newTopTow"></li>
+				<li id="newTopThree"></li>
+				
+				<div class="fyjz">
+					<ul class="pager">
+						<!-- <li><a href="#">上一页</a></li> -->
+					    <li><div class="btn" id="beforePage" style="display:none"  class="beforePage" onclick="beforePage(this)" >上一页</div></li>
+						<li><div class="btn" id="nextPage" style="display:none" class="nextPage" onclick="nextPage(this)">下一页</div></li>
+					</ul>
+
+				</div>
+			</ul>
+		</div>
+
+		<!----------------新闻列表--------------------------------->
+
+	</div>
+	<!--------------container结束-------------------->
+	<div class=" footer navbar navbar-default navbar-fixed-bottom"
+		role="navigation">
+		<a href="indexnh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_874.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">首页</div>
+			</div>
+		</a> 
+		<a href="classnh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_89.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">缴费</div>
+			</div>
+		</a> 
+		<a href="list_news_nh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_923.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">资讯</div>
+			</div>
+		</a> 
+		<a href="wodenh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_95.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">我的</div>
+			</div>
+		</a>
+	</div>
+
+</body>
+	<script src="js/nhxwlb.js"> </script> 
+
+</html>

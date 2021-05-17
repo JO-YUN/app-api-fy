@@ -1,0 +1,340 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- Add to homescreen for Safari on iOS -->
+		<!-- 添加至主屏, 从主屏进入会隐藏地址栏和状态栏, 全屏(content="yes") -->
+		<meta name="apple-mobile-web-app-capable" content="yes">
+
+		<!-- 系统顶栏的颜色(content = black、white 和 black-translucent)选其一就可以 -->
+
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+		<title>资讯</title>
+		<link href="css/amazeui.css" rel="stylesheet" type="text/css" />
+
+		<style>
+			body {
+				padding: 0;
+				margin: 0;
+			}
+			
+			[data-am-widget='tabs'] {
+				margin: 2px;
+			}
+			
+			.am-list-item-hd a {
+				color: #000000;
+			}
+			
+			.am-tabs-bd {
+				border: 0;
+			}
+			
+			.am-navbar-default .am-navbar-nav {
+				background-color: #ffffff;
+			}
+			
+			.am-navbar-default a {
+				color: #000000;
+			}
+			
+			.am-header {}
+			
+			.am-header-default {
+				background-color: #3a6ef8;
+			}
+			
+			.am-tabs-bd .am-tab-panel {
+				padding: 5px 5px 15px;
+			}
+			
+			.foot {
+				width: 100%;
+				height: 45px;
+				margin: 0 auto;
+				margin-top: 20px;
+				font-size: 14px;
+				position: fixed;
+				bottom: 0;
+				left: 0;
+				z-index: 999;
+				background: #ffffff;
+				text-align: center;
+				border-top: 1px solid #b8b7b7;
+				padding-bottom: 5px;
+			}
+			
+			.foot1 {
+				width: 25%;
+				float: left;
+				height: 45px;
+			}
+			
+			.foot1 img {
+				width: auto;
+				height: 20px;
+				margin: 0 auto;
+			}
+			
+			.footzi {
+				font-size: 12px;
+				padding-top: 5px;
+			}
+			
+			.more {
+				overflow: hidden;
+				padding: 10px;
+				text-align: center;
+			}
+			
+			.more a {
+				display: block;
+				width: 100px;
+				font-size: 14px;
+				padding: 5px 0;
+				color: #fff;
+				margin: 0 auto;
+				background: #333;
+				text-align: center;
+				border-radius: 15px;
+			}
+			
+			.more a:hover {
+				text-decoration: none;
+				background: red;
+				color: #fff;
+			}
+			
+			.hidden1 {
+				display: none;
+			}
+			
+			.am-list-news ul .am-list {
+				overflow: hidden;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header data-am-widget="header" class="am-header am-header-default">
+			<div class="am-header-left am-header-nav">
+
+			</div>
+
+			<h1 class="am-header-title">
+	          <a href="#title-link">
+	           资讯
+	          </a>
+	      </h1>
+
+		</header>
+
+		<div data-am-widget="tabs" class="am-tabs am-tabs-d2">
+
+			<div class="am-tabs-bd">
+				<div data-tab-panel-0 class="am-tab-panel am-active">
+					<div data-am-widget="list_news" class="am-list-news am-list-news-default">
+						<!--列表标题-->
+
+						<div class="am-list-news-bd">
+							<div class="hidden1">
+
+								<!--缩略图在标题下方居右-->
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我很囧，你保重....</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">囧人囧事囧照，人在囧途，越囧越萌。标记《带你出发，陪我回家》http://book.douban.com/subject/25711202/为“想读”“在读”或“读过”，有机会获得此书本活动进行3个月，每月送出三本书。会有不定期bonus！</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="">
+											<img src="img/lunbo2.jpg" alt="我很囧，你保重....！" />
+										</a>
+									</div>
+								</li>
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我最喜欢的一张画</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="">
+											<img src="img/lunbo2.jpg" alt="我最喜欢的一张画" />
+										</a>
+									</div>
+								</li>
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我最喜欢的一张画</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="http://www.douban.com/online/11624755/">
+											<img src="http://amazeui.shopxo.net/static/images/001.jpg" alt="我最喜欢的一张画" />
+										</a>
+									</div>
+								</li>
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我最喜欢的一张画</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="">
+											<img src="http://amazeui.shopxo.net/static/images/001.jpg" alt="我最喜欢的一张画" />
+										</a>
+									</div>
+								</li>
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我最喜欢的一张画</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="">
+											<img src="http://amazeui.shopxo.net/static/images/001.jpg" alt="我最喜欢的一张画" />
+										</a>
+									</div>
+								</li>
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我最喜欢的一张画</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="">
+											<img src="http://amazeui.shopxo.net/static/images/001.jpg" alt="我最喜欢的一张画" />
+										</a>
+									</div>
+								</li>
+								<li class="am-g am-list-item-desced am-list-item-thumbed am-list-item-thumb-bottom-right">
+									<h3 class="am-list-item-hd"><a href="">我最喜欢的一张画</a></h3>
+
+									<div class=" am-u-sm-7 am-list-main">
+
+										<div class="am-list-item-text">你最喜欢的艺术作品，告诉大家它们的------名图画，色彩，交织，撞色，线条雕塑装置当代古代现代作品的照片美我最喜欢的画群296795413进群发画，少说多发图，</div>
+
+									</div>
+									<div class="am-list-thumb am-u-sm-5">
+										<a href="">
+											<img src="http://amazeui.shopxo.net/static/images/001.jpg" alt="我最喜欢的一张画" />
+										</a>
+									</div>
+								</li>
+							</div>
+
+						</div>
+						<!------------------分类1-------------------------->
+						<ul class="am-list"></ul>
+						<div class="more">
+							<a href="javascript:;" onClick="jq22.loadMore();">加载更多</a>
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+		<!-------------------------------------底部导航------------------------------------------->
+		<div class="foot">
+			<div class="foot1">
+				<div class="footimg">
+					<img src="img/mscs_87.jpg">
+				</div>
+				<div class="footzi">
+					首页
+				</div>
+
+			</div>
+			<div class="foot1">
+				<div class="footimg">
+					<a href="#"><img src="img/mscs_89.jpg"></a>
+				</div>
+				<div class="footzi">
+					<a href="#">缴费</a>
+				</div>
+			</div>
+			<div class="foot1">
+				<div class="footimg">
+					<img src="img/mscs_92.jpg">
+				</div>
+				<div class="footzi">
+					资讯
+				</div>
+
+			</div>
+			<div class="foot1">
+				<div class="footimg">
+					<img src="img/mscs_95.jpg">
+				</div>
+				<div class="footzi">
+					我的
+				</div>
+			</div>
+
+		</div>
+		<!-------------------------------------底部导航------------------------------------------->
+		</div>
+
+	</body>
+	<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+	<script>
+		var _content = []; //临时存储li循环内容
+		var jq22 = {
+			_default: 3, //默认显示图片个数
+			_loading: 2, //每次点击按钮后加载的个数
+			init: function() {
+				var lis = $(".am-list-news .hidden1 li");
+				$(".am-list-newsul.am-list").html("");
+				for(var n = 0; n < jq22._default; n++) {
+					lis.eq(n).appendTo(".am-list-news ul.am-list");
+				}
+				$(".am-list-news ul.am-list-thumb img").each(function() {
+					$(this).attr('src', $(this).attr('realSrc'));
+				})
+				for(var i = jq22._default; i < lis.length; i++) {
+					_content.push(lis.eq(i));
+				}
+				$(".am-list-news .hidden1").html("");
+			},
+			loadMore: function() {
+				var mLis = $(".am-list-news ul.am-list li").length;
+				for(var i = 0; i < jq22._loading; i++) {
+					var target = _content.shift();
+					if(!target) {
+						$('.am-list-news .more').html("<p>全部加载完毕...</p>");
+						break;
+					}
+					$(".am-list-news ul.am-list").append(target);
+					$(".am-list-news ul.am-list-thumb img").eq(mLis + i).each(function() {
+						$(this).attr('src', $(this).attr('realSrc'));
+					});
+				}
+			}
+		}
+		jq22.init();
+	</script>
+	<!--代码部分end-->
+	<script src="js/amazeui.js"></script>
+
+</html>

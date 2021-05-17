@@ -1,0 +1,348 @@
+/* Write your styles */
+
+/* 登陆logo */
+body {
+	padding: 0;
+	margin: 0;
+	font-family: "microsoft yahei";
+	background: #ffffff;
+}
+
+.head {
+	background: #307dff;
+	height: 200px;
+	width: 100%;
+}
+
+.dhl {
+	background: #307dff;
+	height: 20px;
+	width: 100%;
+}
+
+[data-am-widget='tabs'] {
+	margin: 2px;
+}
+
+.am-list-item-hd a {
+	color: #000000;
+}
+
+.am-tabs-bd {
+	border: 0;
+}
+
+.am-navbar-default .am-navbar-nav {
+	background-color: #ffffff;
+}
+
+.am-navbar-default a {
+	color: #000000;
+}
+
+.am-header-default {
+	background-color: #3a6ef8;
+}
+
+.am-tabs-bd .am-tab-panel {
+	padding: 5px 5px 15px;
+}
+
+input {
+	width: 100%;
+	border-radius: 20px;
+	border: 1px solid #e2e2e2;
+	height: 35px;
+	float: left;
+	background-image: url(images/search.jpg);
+	background-repeat: no-repeat;
+	background-size: 25px;
+	background-position: 5px center;
+	padding: 0 0 0 40px;
+	float: left;
+}
+
+.hdp {
+	width: 96%;
+	margin: 0 auto;
+}
+
+.hdp img {
+	width: 100%;
+	height: auto;
+	margin-top: 60px;
+}
+
+.zw {
+	margin-top: 30px;
+	width: 100%;
+	margin: 20px auto;
+}
+
+.zw img {
+	width: 100%;
+	height: 13vh;
+}
+
+.bt {
+    font-size: 18px;
+    font-weight: bold;
+    background: url(../img/mscs_77.jpg) no-repeat;
+    background-size: 5px 30px;
+    text-align: center;
+    margin-bottom:10px
+}
+
+.fenlei {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.fenlei1 {
+	width: 100%;
+	margin: 0 auto;
+	margin-top: 15px;
+}
+
+.biaoti {
+	text-align: left;
+	padding-top: 10px;
+	width: 66px;
+}
+
+.tu img {
+	width: 25px;
+	height: 28px;
+	margin: 0 auto;
+}
+
+.rmbt {
+	font-size: 18px;
+	margin-top: 20px;
+	background: url(../img/mscs_77.jpg) no-repeat;
+	padding-left: 5vw;
+	background-size: 5px 30px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+
+.fuwu {
+	width: 100%;
+}
+
+.fuwu1 {
+	width: 50%;
+	float: left;
+	padding-right: 3px;
+}
+
+.fuwu2 {
+	width: 50%;
+	float: left;
+}
+
+.footer {
+	width: 100%;
+	height: 45px;
+	margin: 0 auto;
+	margin-top: 30px;
+	padding-top: 5px;
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	z-index: 49;
+}
+
+.footerzi {
+	text-align: center;
+	padding-top: 5px;
+}
+
+.footer img {
+	width: auto;
+	height: 20px;
+	margin: 0 auto;
+}
+
+.wenbt {
+	width: 100%;
+}
+
+.wenzhang {
+	width: 100%;
+	margin: 0 auto
+}
+
+.xwlb {
+	margin-bottom: 50px;
+}
+
+.xwlb1 {
+	margin-bottom: 15px;
+}
+
+.xwlb1 ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.xwlb1 ul li {
+	display: inline-block;
+	padding-top: 10px;
+}
+
+.xwlb ul {
+	list-style: none;
+	padding-left: 0;
+}
+
+.xwlb ul li {
+	display: inline-block;
+	padding-top: 10px;
+}
+
+.xwlbfgx {
+	border-bottom: 1px solid #e0e0e0;
+	padding-bottom: 2%;
+}
+
+.xwlbfgx-sanlie {
+	border-bottom: 1px solid #e0e0e0;
+	min-height:130px;
+    max-height: 155px;
+    padding-bottom: 2%;
+}
+
+.xwlbfgx-sanlie img {
+	width: 100%;
+}
+
+.xwlb-zw-sanlie {
+	margin-bottom: 0.625rem;
+}
+
+.xwlb-db {
+	font-size: 12px;
+	margin-top: 0vh;
+	color: #939393;
+	float: left;
+	margin-right: 2vw;
+}
+
+.xwlb-db-dtbt {
+	font-size: 12px;
+	margin-top: 2vh;
+	color: #939393;
+	float: left;
+	margin-right: 2vw;
+}
+
+.xwlb-db1-bt {
+	font-size: 12px;
+	margin-top: 2vh;
+	color: #939393;
+	float: left;
+	margin-right: 2vw;
+}
+
+.xwlb-db1 {
+	font-size: 12px;
+	margin-top: 2vh;
+	color: #939393;
+	float: left;
+	margin-right: 2vw;
+}
+
+.xwlb-zw-dt {
+	margin-top: 10px;
+}
+
+.xwlb img {
+	height: 120px;
+	width: 100%;
+}
+
+.img-thumbnail {
+	border: none;
+}
+
+.liebiao-datu {
+	overflow: hidden; /*this is important*/
+}
+
+.liebiao-datu img {
+	border-radius: 15px;
+}
+
+.label {
+	padding: .4em .6em .3em;
+}
+
+.bbtt {
+	width: 100%;
+	margin: 0 auto;
+	float: left;
+	margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.bb {
+	float: left;
+	width: 50%;
+	font-weight: bold;
+	font-size: 18px;
+	background: url(../img/mscs_77.jpg) no-repeat;
+	padding-left: 5vw;
+	background-size: 5px 30px;
+}
+
+.tt {
+	float: right;
+	width: 50%;
+	text-align: right;
+}
+
+.dlss {
+	width: 96%;
+	margin-left: 2%;
+	margin-right: 2%;
+}
+
+.dl {
+	width: 10%;
+	float: left;
+	text-align: center;
+	line-height: 35px;
+	color: #fff;
+}
+
+.swiper-container {
+	width: 100%;
+	height: 120px;
+	margin-top: 20px;
+	border-radius: 10px;
+}
+
+.swiper-slide {
+	width: 100%;
+	height: 120px;
+}
+
+.swiper-slide img {
+	width: 100%;
+	height: 100%;
+}
+
+.search {
+	width: 90%;
+	float: left;
+	margin-bottom: 20px;
+}
+
+input[type="search"] {
+	-webkit-appearance: none;
+	outline: none;
+	background: url(../img/fdj.png) no-repeat;
+	background-size: 30px 30px;
+	background-color: #fff;
+}

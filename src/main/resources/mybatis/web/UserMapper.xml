@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.User">
+		<result column="wid" jdbcType="VARCHAR" property="wid" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="sfzjh" jdbcType="VARCHAR" property="sfzjh" />
+		<result column="password" jdbcType="VARCHAR" property="passWord" />
+		<result column="gender" jdbcType="VARCHAR" property="gender" />
+		<result column="dept" jdbcType="VARCHAR" property="dept" />
+		<result column="state" jdbcType="DECIMAL" property="state" />
+		<result column="type" jdbcType="DECIMAL" property="type" />
+		<result column="app_state" jdbcType="DECIMAL" property="appState" />
+		<result column="email" jdbcType="VARCHAR" property="email" />
+		<result column="address" jdbcType="VARCHAR" property="address" />
+		<result column="pic" jdbcType="VARCHAR" property="pic" />
+		<result column="alipayid" jdbcType="VARCHAR" property="alipayid" />
+		<result column="openid" jdbcType="VARCHAR" property="openid" />
+		<result column="nickname" jdbcType="VARCHAR" property="nickname" />
+		<result column="language" jdbcType="VARCHAR" property="language" />
+		<result column="city" jdbcType="VARCHAR" property="city" />
+		<result column="province" jdbcType="VARCHAR" property="province" />
+		<result column="country" jdbcType="VARCHAR" property="country" />
+		<result column="headimgurl" jdbcType="VARCHAR" property="headimgurl" />
+		<result column="unionid" jdbcType="VARCHAR" property="unionid" />
+        <result column="alipaynickname" jdbcType="VARCHAR" property="alipaynickname" />
+		<result column="alipaycity" jdbcType="VARCHAR" property="alipaycity" />
+		<result column="alipayprovince" jdbcType="VARCHAR" property="alipayprovince" />
+		<result column="alipayheadurl" jdbcType="VARCHAR" property="alipayheadurl" />
+		<result column="alipaydegree" jdbcType="VARCHAR" property="alipaydegree" />
+		<result column="alipaymobile" jdbcType="VARCHAR" property="alipaymobile" />
+		<result column="alipayusername" jdbcType="VARCHAR" property="alipayusername" />
+		<result column="alipayemail" jdbcType="VARCHAR" property="alipayemail" />
+		<result column="alipayadress" jdbcType="VARCHAR" property="alipayadress" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		wid,user_id,name,sfzjh,gender,dept,state,type,app_state,email,address,pic,
+		alipayid,openid,nickname,language,city,province,country,headimgurl,unionid,
+	    alipaynickname,alipaycity,alipayprovince,alipayheadurl,alipaydegree,alipaymobile,alipayusername,alipayemail,alipayadress
+	</sql>
+	
+	<update id="updateInforByUid" parameterType="com.mscs.app.web.model.User">
+		update t_jzg
+		<set>
+			<if test="name != null">
+				xm = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				xbdm = #{gender,jdbcType=VARCHAR},
+			</if>
+			<if test="sfzjh != null">
+				sfzjh = #{sfzjh,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where zgh = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 根据学工号查询学生 -->
+	<select id="findUserByUserId" resultMap="BaseResultMap">
+		select distinct
+		<include refid="Base_Column_List" />
+		from v_user where user_id=#{userId,jdbcType=VARCHAR}
+		and state=1 and rownum=1
+	</select>
+	
+    <select id="fetchInforByAlipayId" resultMap="BaseResultMap">
+		select distinct
+		<include refid="Base_Column_List" />
+		from v_user where alipayId=#{alipayId,jdbcType=VARCHAR}
+		and state=1
+	</select>
+	<!-- 根据openid号查询学生 -->
+	<select id="checkOpenId" resultMap="BaseResultMap">
+		select distinct
+		user_id
+		from v_user where openid=#{openid,jdbcType=VARCHAR}
+		and state=1
+	</select>
+	
+	<select id="checkOpenIdAndS" resultMap="BaseResultMap">
+		select distinct
+		user_id as userId,sfzjh,NAME,EMAIL
+		from v_user where openid=#{openid,jdbcType=VARCHAR} and sfzjh is not null
+	</select>
+	
+	<select id="checkOpenIdAndSHG" resultMap="BaseResultMap">
+		select distinct
+		user_id as userId,sfzjh,NAME,EMAIL
+		from v_user_hg where openid=#{openid,jdbcType=VARCHAR} and sfzjh is not null
+	</select>
+	
+	<select id="checkOpenIdAndShc" resultMap="BaseResultMap">
+		select distinct
+		user_id as userId,sfzjh,NAME,EMAIL
+		from v_user_hc where openid=#{openid,jdbcType=VARCHAR} and sfzjh is not null
+	</select>
+	
+	<!-- 登录判断账号密码 -->
+	<select id="Verifit" resultMap="BaseResultMap">
+		select 
+		<include refid="Base_Column_List" />
+		from v_user where user_id=#{userId,jdbcType=VARCHAR}
+		and password=#{passWord,jdbcType=VARCHAR}
+		and state=1
+	</select>
+	
+	<!-- 登录判断账号密码 -->
+	<select id="VerifitPass" resultType="java.lang.String">
+		select password from t_jzg where zgh=#{userId,jdbcType=VARCHAR}
+		and state=1
+	</select>
+	<!-- 根据token查找用户id -->
+	<select id="UserIdByToken" resultType="java.lang.String">
+	    select distinct user_id userId from t_token where token=#{token,jdbcType=VARCHAR}
+	</select>
+	<!-- 修改密码-->
+	<update id="UpdatePassWord" parameterType="java.lang.String">
+		update t_jzg set password=#{passWord,jdbcType=VARCHAR}
+	    where zgh = #{userId,jdbcType=VARCHAR}
+	</update>
+	
+	<!-- 根据id查找用户token -->
+	<select id="TokenByUserId" resultType="java.lang.String">
+		select max(token) token from t_token where user_id=#{userId,jdbcType=VARCHAR}
+	</select>
+
+	<select id="countAppNum" resultType="com.mscs.app.web.dao.pojo.UserAppCountVo">
+		select
+		count(1) as total_num,
+		count(case
+		when a.type in
+		('1') then '1'
+		end) student_num,
+		count(case
+		when
+		a.type in ('2')
+		then '1'
+		end) teacher_num,
+		count(case
+		when a.type in ('1')
+		and a.app_state
+		in('1')
+		then '1'
+		end) student_app_num,
+		count(case
+		when
+		a.type in ('2') and
+		a.app_state in('1')
+		then '1'
+		end) teacher_app_num
+		from v_user a
+	</select>
+    <!-- 支付宝信息修改 -->
+   <update id="updateAlipayUser" parameterType="com.mscs.app.common.dto.req.ReqAlipayUserInfroDto">
+       update t_jzg
+		<set>
+			<if test="nickName!= null">
+				alipaynickname = #{nickName,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				alipaycity = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="xbdm != null">
+				xbdm = #{xbdm,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				alipayprovince = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="alipayheadurl != null">
+				alipayheadurl = #{alipayheadurl,jdbcType=VARCHAR},
+			</if>
+			<if test="degree != null">
+				alipaydegree = #{degree,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				alipaymobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="userName != null">
+				alipayusername = #{userName,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				ALIPAYEMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				ALIPAYADRESS = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="alipayId != null">
+				alipayId = #{alipayId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where zgh = #{userId,jdbcType=VARCHAR}
+   </update>
+ 
+    <update id="updateByUid" parameterType="com.mscs.app.common.dto.req.ReqWeiXin">
+		update t_jzg
+		<set>
+			<if test="openid != null">
+				openid = #{openid,jdbcType=VARCHAR},
+			</if>
+			<if test="nickname != null">
+				nickname = #{nickname,jdbcType=VARCHAR},
+			</if>
+			<if test="xbdm != null">
+				xbdm = #{xbdm,jdbcType=VARCHAR},
+			</if>
+			<if test="language != null">
+				language = #{language,jdbcType=VARCHAR},
+			</if>
+			<if test="city != null">
+				city = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="country != null">
+				country = #{country,jdbcType=VARCHAR},
+			</if>
+			<if test="headimgurl != null">
+				headimgurl = #{headimgurl,jdbcType=VARCHAR},
+			</if>
+			<if test="unionid != null">
+				unionid = #{unionid,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where zgh = #{userId,jdbcType=VARCHAR}
+	</update>
+	<update id="resetPwd" parameterType="com.mscs.app.web.model.User">
+	   update t_jzg set password=#{passWord,jdbcType=VARCHAR}
+	   	where zgh = #{userId,jdbcType=VARCHAR}
+	</update>
+<insert id="addUserHistory" parameterType="com.mscs.app.web.model.User">
+       insert into  t_user_history(user_id,sfzjh,NAME)
+        values(
+         #{userId,jdbcType=VARCHAR},
+         #{sfzjh,jdbcType=VARCHAR},
+         #{name,jdbcType=VARCHAR}
+         )
+	</insert>
+	
+	<insert id="add" parameterType="com.mscs.app.web.model.User">
+       insert into  T_JZG(WID,ZGH,State,Password)
+        values(
+         #{wid,jdbcType=VARCHAR},
+         #{userId,jdbcType=VARCHAR},
+         #{state,jdbcType=VARCHAR},
+         #{passWord,jdbcType=VARCHAR}
+         )
+	</insert>
+	<insert id="addWx" parameterType="com.mscs.app.web.model.User">
+       insert into  T_JZG(WID,ZGH,State,xm,openid,sfzjh)
+        values(
+         #{wid,jdbcType=VARCHAR},
+         #{userId,jdbcType=VARCHAR},
+         #{state,jdbcType=VARCHAR},
+         #{name,jdbcType=VARCHAR},
+         #{openid,jdbcType=VARCHAR},
+         #{sfzjh,jdbcType=VARCHAR}
+         )
+	</insert>
+	<insert id="addWxhg" parameterType="com.mscs.app.web.model.User">
+       insert into  T_JZG_HG(WID,ZGH,State,xm,openid,sfzjh,carid)
+        values(
+         #{wid,jdbcType=VARCHAR},
+         #{userId,jdbcType=VARCHAR},
+         #{state,jdbcType=VARCHAR},
+         #{name,jdbcType=VARCHAR},
+         #{openid,jdbcType=VARCHAR},
+         #{sfzjh,jdbcType=VARCHAR},
+         #{carid,jdbcType=VARCHAR}
+         )
+	</insert>
+	<insert id="addWxhc" parameterType="com.mscs.app.web.model.User">
+       insert into  T_JZG_HC(WID,ZGH,State,xm,openid,sfzjh)
+        values(
+         #{wid,jdbcType=VARCHAR},
+         #{userId,jdbcType=VARCHAR},
+         #{state,jdbcType=VARCHAR},
+         #{name,jdbcType=VARCHAR},
+         #{openid,jdbcType=VARCHAR},
+         #{sfzjh,jdbcType=VARCHAR}
+         )
+	</insert>
+	<insert id="addWeixin" parameterType="com.mscs.app.common.dto.req.ReqWeiXin">
+       insert into  T_JZG(WID,ZGH,OPENID,NICKNAME,xbdm,LANGUAGE,CITY,PROVINCE,
+       COUNTRY,HEADIMGURL,STATE,Password)
+        values(
+         #{wid,jdbcType=VARCHAR},
+         #{userId,jdbcType=VARCHAR},
+         #{openid,jdbcType=VARCHAR},
+         #{nickname,jdbcType=VARCHAR},
+         #{xbdm,jdbcType=VARCHAR},
+         #{language,jdbcType=VARCHAR},
+         #{city,jdbcType=VARCHAR},
+         #{province,jdbcType=VARCHAR},
+         #{country,jdbcType=VARCHAR},
+         #{headimgurl,jdbcType=VARCHAR},
+         #{state,jdbcType=VARCHAR},
+         #{passWord,jdbcType=VARCHAR}
+         )
+	</insert>
+
+	<insert id="addAlipayUser" parameterType="com.mscs.app.common.dto.req.ReqAlipayUserInfroDto">
+       insert into  T_JZG(WID,ZGH,alipayId,alipaynickname,alipaycity,xbdm,alipayprovince,alipayheadurl,alipaydegree,alipaymobile,alipayusername,ALIPAYEMAIL,STATE,ALIPAYADRESS,Password)
+        values(
+         #{wid,jdbcType=VARCHAR},
+         #{userId,jdbcType=VARCHAR},
+         #{alipayId,jdbcType=VARCHAR},
+         #{nickName,jdbcType=VARCHAR},
+         #{city,jdbcType=VARCHAR},
+         #{xbdm,jdbcType=VARCHAR},
+         #{province,jdbcType=VARCHAR},
+         #{alipayheadurl,jdbcType=VARCHAR},
+         #{degree,jdbcType=VARCHAR},
+         #{mobile,jdbcType=VARCHAR},
+         #{userName,jdbcType=VARCHAR},
+         #{email,jdbcType=VARCHAR},
+         #{state,jdbcType=VARCHAR},
+         #{address,jdbcType=VARCHAR},
+         #{passWord,jdbcType=VARCHAR}
+         )
+	</insert>
+
+    <!-- 修改图片-->
+	<update id="updatePic" parameterType="com.mscs.app.web.model.User">
+	   update t_jzg set pic=#{pic,jdbcType=VARCHAR}
+	    where zgh = #{userId,jdbcType=VARCHAR}
+	</update>
+<delete id="deleteUserByAlipayId">
+delete from t_jzg where alipayId=#{alipayId,jdbcType=VARCHAR}
+</delete>
+</mapper>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0116)https://orientalhaerbin.zainanjing365.com/siteapp/gdmm/jsp?service_name=wap&method_name=shareJsp&appscheme=gdmm-zheb -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<title>码上讷河</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="./images/download.css">
+	<script type="text/javascript" src="./images/jquery-2.1.1.min.js"></script>
+	<script type="text/javascript" src="./images/linktoapp.js"></script>
+	<script type="text/javascript" src="./images/dlpages.js"></script>
+	<script src="./images/sha1.js"></script>
+	<script src="./images/jweixin-1.0.0.js"></script>
+	
+<script type="text/javascript">
+	//分享代码逻辑
+	var ticket = "bxLdikRXVbTPdHSM05e5u83ZwrKuw6wQkLOgHZOd8WK0n03y-n9cnQ4UvPdX12oT-25wPd8Y4kL1BheUv3nZXw";
+    var appid = "wx8781066f0edcdbc3"; 
+    
+    
+    //var ticket = "kgt8ON7yVITDhtdwci0qeYqKMCwSbdSlSlJSKarv79g0LWbXM8R72XpCRfp0Bo3tapPL2lvYC750acFN0n3sfQ";
+    //var appid = "wx7d3c1e9392b50f59";
+    
+    
+    //var ticket = "bxLdikRXVbTPdHSM05e5u83ZwrKuw6wQkLOgHZOd8WK0n03y-n9cnQ4UvPdX12oT-25wPd8Y4kL1BheUv3nZXw";
+    //var appid = "wx9809343797a03635"; 
+    
+    //陈荣
+    //var ticket = "bxLdikRXVbTPdHSM05e5u83ZwrKuw6wQkLOgHZOd8WK0n03y-n9cnQ4UvPdX12oT-25wPd8Y4kL1BheUv3nZXw";
+    //var appid = "wx8781066f0edcdbc3"; 
+    
+    var oldTimeStamp ;//记住timestamp，避免签名时的timestamp与传入的timestamp时不一致
+    var oldNonceStr ; //记住nonceStr,避免签名时的nonceStr与传入的nonceStr不一致
+             
+    function getTimeStamp()
+    {
+        var timestamp=new Date().getTime();
+        var timestampstring = timestamp.toString();//一定要转换字符串
+        oldTimeStamp = timestampstring;
+        return timestampstring;
+    }
+    
+    function getNonceStr()
+    {
+        var $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        var maxPos = $chars.length;
+        var noceStr = "";
+        for (i = 0; i < 32; i++) {
+            noceStr += $chars.charAt(Math.floor(Math.random() * maxPos));
+        }
+        oldNonceStr = noceStr;
+        return noceStr;
+    }
+
+    function getSignPackage() {
+ 	    var jsapiTicket="bxLdikRXVbTPdHSM05e5u83ZwrKuw6wQkLOgHZOd8WK0n03y-n9cnQ4UvPdX12oT-25wPd8Y4kL1BheUv3nZXw";
+ 	    var url=location.href;
+ 	    var string = "jsapi_ticket="+jsapiTicket+"&noncestr="+oldNonceStr+"&timestamp="+oldTimeStamp+"&url="+url;
+ 	    var signature = CryptoJS.SHA1(string).toString();
+ 	   //var signature = hex_sha1(string).toString();
+ 	    return signature; 
+ 	  }
+    
+   wx.config({
+   
+       debug: false,
+       appId: 'wx8781066f0edcdbc3',
+       timestamp: getTimeStamp(),
+       nonceStr: getNonceStr(),
+       signature: getSignPackage(),
+       jsApiList: [
+         'checkJsApi',
+         'onMenuShareTimeline',
+         'onMenuShareAppMessage',
+         'onMenuShareQQ',
+         'onMenuShareWeibo',
+         'hideMenuItems',
+         'showMenuItems',
+         'hideAllNonBaseMenuItem',
+         'showAllNonBaseMenuItem',
+         'translateVoice',
+         'startRecord',
+         'stopRecord',
+         'onRecordEnd',
+         'playVoice',
+         'pauseVoice',
+         'stopVoice',
+         'uploadVoice',
+         'downloadVoice',
+         'chooseImage',
+         'previewImage',
+         'uploadImage',
+         'downloadImage',
+         'getNetworkType',
+         'openLocation',
+         'getLocation',
+         'hideOptionMenu',
+         'showOptionMenu',
+         'closeWindow',
+         'scanQRCode',
+         'chooseWXPay',
+         'openProductSpecificView',
+         'addCard',
+         'chooseCard',
+         'openCard'
+       ]
+   });
+   
+   
+		wx.ready(function () {
+		 var basePath = 'https://orientalhaerbin.zainanjing365.com/siteapp/';
+		 var cityAbbreviation = 'heb';
+         var appName = '在哈尔滨';
+         var titleString = '' ;
+       	 var descString = '' ;
+       //江阴特殊处理
+         if(cityAbbreviation =='jy'){
+	            titleString = '温馨周到最江阴！一个APP，生活服务全搞定！';
+	            descString = '政府部门公共事务和家政市场便民服务在线办理，市民可随时随地享受移动生活各种便利！';
+         }else{
+	         	titleString = '"在哈尔滨"app,哈尔滨人手机里的大管家！';
+	            descString = '参与哈尔滨广电节目互动，享受便民生活无忧，购物更多优惠特权！';
+         }
+       
+		  //监听“分享给朋友”，按钮点击、自定义分享内容及分享结果接口
+		  wx.onMenuShareAppMessage({
+			  title: titleString,	
+		      desc: descString,
+		      link: basePath + 'gdmm/jsp?service_name=wap&method_name=shareJsp&appscheme=gdmm-zheb' ,
+		      imgUrl: basePath + '/sq/images/icon_heb.png',
+		      trigger: function (res) {
+		       // alert('用户点击发送给朋友');
+		      },
+		      success: function (res) {
+		      //  alert('已分享');
+		        
+		      },
+		      cancel: function (res) {
+		     //  alert('已取消');
+		      },
+		      fail: function (res) {
+		      //  alert(JSON.stringify(res));
+		      }
+		    });
+		   
+		  //监听“分享到朋友圈”按钮点击、自定义分享内容及分享结果接口
+		  wx.onMenuShareTimeline({
+			  title: titleString,	
+		      desc: descString,
+		      link: basePath + 'gdmm/jsp?service_name=wap&method_name=shareJsp&appscheme=gdmm-zheb' ,
+		      imgUrl: basePath + '/sq/images/icon_heb.png',
+		        trigger: function (res) {
+		          //alert('用户点击分享到朋友圈');
+		        },
+		        success: function (res) {
+		         // alert('已分享');
+		          
+		        },
+		        cancel: function (res) {
+		        //  alert('已取消');
+		        },
+		        fail: function (res) {
+		        //  alert(JSON.stringify(res));
+		        }
+		      });
+		});
+		
+/* 		function initAndr(){
+			if(!browser.versions.android){
+				$("#andr").attr("href","");
+			}
+		}
+
+		$(function(){
+			initAndr();
+		}) */
+	</script>
+</head>
+<body>
+	<div class="wrap">
+		<div class="bgImg"><img src="./images/gdmm-zheb-bg.jpg" alt=""></div>
+		<div class="appDown">
+			<p ><a class="download" id="andr" href="http://www.data0452.com/az/mscs.apk"><img src="./images/app_01.png" alt="" ></a></p>
+			<p><a class="download" href="https://apps.apple.com/cn/app/%E7%A0%81%E4%B8%8A%E8%AE%B7%E6%B2%B3/id1455207023"><img src="./images/app_02.png" alt=""></a></p>
+		</div>
+	</div>
+
+</body></html>

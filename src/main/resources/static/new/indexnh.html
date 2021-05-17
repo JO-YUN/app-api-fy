@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="stylesheet" href="css/style1.css">
+<link rel="stylesheet" href="css/swiper.css">
+
+
+
+<title>码上讷河</title>
+<style>
+.xwlb1 ul li {
+	list-style: none
+}
+
+a {
+	color: #333;
+}
+
+.footerzi {
+	padding-bottom: 5px;
+	font-size: 12px;
+}
+
+.head {
+	height: 210px;
+}
+
+.swiper-container1 {
+	background:#307dff;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	overflow: hidden;
+	list-style: none;
+	padding: 0;
+	z-index: 1;
+	width: 98%;
+	height:100px;
+	margin-top: 20px;
+}
+
+.swiper-pagination1 {
+	position: absolute;
+	text-align: center;
+	transition: .3s opacity;
+	transform: translate3d(0, 0, 0);
+	z-index: 10;
+}
+
+.xwlbfgx-sanlie img {
+	height: 120px;
+}
+
+.fuwu1 img {
+	width: 100%;
+	height: 14.5rem
+}
+
+.class1 img {
+	width: 100%;
+	height: 7rem
+}
+
+.class2 img {
+	width: 100%;
+	height: 7rem
+}
+
+.gray {
+	-webkit-filter: grayscale(100%);
+	-moz-filter: grayscale(100%);
+	-ms-filter: grayscale(100%);
+	-o-filter: grayscale(100%);
+	filter: grayscale(100%);
+	filter: gray;
+}
+
+.zhengwen {
+	margin-top: 5px;
+	font-size: 12px;
+	text-indent: 1.25rem;
+}
+
+.xwlb-zw {
+	font-weight: bold;
+}
+
+.xwlbfgx {
+	min-height: 130px;
+	max-height: 135px;
+}
+
+/*  后加	 */
+.xwlb-db {
+	font-size: 12px;
+	margin-top: 0vh;
+	color: #939393;
+	float: left;
+	margin-right: 2vw;
+}
+
+.fyjz {
+	width: 80%;
+	margin: 0 auto;
+}
+
+pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover,
+	.pagination>.active>span:hover, .pagination>.active>a:focus,
+	.pagination>.active>span:focus {
+	z-index: 3;
+	color: #fff;
+	cursor: default;
+	background-color: #307dff !important;
+	border-color: #307dff !important;
+}
+
+.pager a {
+	color: #307dff;
+	font-weight: 550;
+}
+
+a {
+	color: #333;
+}
+
+.footerzi {
+	font-size: 12px;
+}
+
+.xwlb {
+	margin-top: 2rem;
+}
+
+.bg-fl1 {
+	background-color: #fff;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	width: 100%;
+	margin: 0 auto;
+	height: auto;
+	margin-top: 20px;
+}
+
+.line1 {
+	border-bottom: 1px solid #e0e0e0;
+	padding-bottom: 0.625rem;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+.xiaotubiao {
+	background-color: #023894;
+	height: 60px;
+	width: 60px;
+	line-height: 20px;
+	position: absolute;
+	right: 5px;
+	margin-top: -20px;
+	color: #fff;
+	text-align: center;
+	padding: 10px;
+}
+
+.ziti1 {
+	font-size: 20px;
+	font-style: normal
+}
+
+.ziti2 {
+	font-size: 12px;
+	text-decoration: none;
+	font-style: normal
+}
+
+
+</style>
+</head>
+<body>
+	<div class="head">
+		<div class="dhl"></div>
+		<div class="dlss">
+			<div class="search">
+				<form action="#" method="post"
+					onclick="javascript:window.location.href='search.html' ">
+					<input type="search" name="search" placeholder="请输入关键字">
+				</form>
+			</div>
+			<div class="dl">
+				<a href="denglu.html"><img src="img/ggg.png" width="25"
+					height="25"></a>
+			</div>
+		</div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper" id="top"></div>
+			<!-- 如果需要分页器 -->
+			<div class="swiper-pagination"></div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="zw row">
+			<div class="bt">讷河数字政务系统</div>
+			<a href="../affairs/index.html"> <img src="img/mscs_03.jpg"
+				class="img-responsive"></a>
+		</div>
+		<div id="apps"></div>
+		<!--------分类结束------------>
+		<div class="bbtt row">
+			<div class="bb">广告位</div>
+		</div>
+		<!--------------------------广告位--------------------->
+
+		<div class="swiper-container1">
+			<div class="swiper-wrapper" id="AD"></div>
+		</div>
+		<!--------------------------广告位--------------------->
+		<div class="rmfw">
+			<div class="rmbt">热门服务</div>
+			<div class="fuwu" id="fuwu"></div>
+		</div>
+		<div class="bbtt row">
+			<div class="bb">新闻资讯</div>
+			<div class="tt">
+				<a href="list_news_nh.html">更多</a>
+			</div>
+		</div>
+		<!----------------新闻列表--------------------------------->
+		<!-- <div class="xwlb row">
+				<ul>
+					<li id = "newTop"></li>
+					<li id = "newTopTow"> </li>
+					<li id = "newTopThree"> </li>
+
+			   </ul>
+			</div> -->
+		<!-- 新的 -->
+		<div class="xwlb row">
+			<div class="col-xs-12 " id="topTittle"></div>
+			<div class="swiper-container" style="margin-top: 70px;"
+				id="newTopOne">
+				<div class="swiper-wrapper" id="newTop"></div>
+				<!-- 如果需要分页器 -->
+				<div class="swiper-pagination"></div>
+			</div>
+
+			<!----------------新闻列表--------------------------------->
+
+			<ul>
+				<li id="newTopTow"></li>
+				<li id="newTopThree"></li>
+			</ul>
+		</div>
+
+		<!----------------新闻列表--------------------------------->
+	</div>
+	<!--------------container结束-------------------->
+	<div class=" footer navbar navbar-default navbar-fixed-bottom"
+		role="navigation">
+		<a href="">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_87.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">首页</div>
+			</div>
+		</a> <a href="classnh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_89.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">缴费</div>
+			</div>
+		</a> <a href="list_news_nh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_92.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">资讯</div>
+			</div>
+		</a> <a href="wodenh.html">
+			<div class="col-xs-3">
+				<div class="footertu">
+					<img src="img/mscs_95.jpg" class="img-responsive">
+				</div>
+				<div class="footerzi">我的</div>
+			</div>
+		</a>
+	</div>
+
+</body>
+
+<script src="js/swiper.js">
+	
+</script>
+<script src="js/jquery.min.js">
+	
+</script>
+<script src="js/indexnh.js">
+	
+</script>
+<script src="../js/apis.js" type="text/javascript" charset="utf-8"></script>
+</html>

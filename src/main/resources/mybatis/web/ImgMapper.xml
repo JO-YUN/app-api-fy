@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.ImgMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.Img">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="title" jdbcType="VARCHAR" property="title" />
+		<result column="img_link" jdbcType="VARCHAR" property="imgLink" />
+		<result column="news_link" jdbcType="VARCHAR" property="newsLink" />
+		<result column="state" jdbcType="DECIMAL" property="state" />
+		<result column="weight" jdbcType="DECIMAL" property="weight" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		id,title,img_link,news_link,state,weight
+	</sql>
+
+	<!-- 查询轮播图 -->
+	<select id="queryImg" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_img where state=1 order by weight desc
+	</select>
+
+
+
+</mapper>

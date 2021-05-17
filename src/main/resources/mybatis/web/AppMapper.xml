@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.AppMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.App">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="name" jdbcType="VARCHAR" property="name" />
+		<result column="link" jdbcType="VARCHAR" property="link" />
+		<result column="icon" jdbcType="VARCHAR" property="icon" />
+		<result column="need_login" jdbcType="DECIMAL" property="needLogin" />
+		<result column="open_type" jdbcType="DECIMAL" property="openType" />
+		<result column="app_type" jdbcType="VARCHAR" property="appType" />
+		<result column="app_type_id" jdbcType="VARCHAR" property="appType_Id" />
+		<result column="urltype" jdbcType="VARCHAR" property="urltype" />
+		<result column="sys_type" jdbcType="DECIMAL" property="sysType" />
+		<result column="weight" jdbcType="DECIMAL" property="weight" />
+		<result column="state" jdbcType="DECIMAL" property="state" />
+		<result column="apple" jdbcType="DECIMAL" property="apple" />
+	</resultMap>
+
+	<!-- 基本字段 -->
+	<sql id="Base_Column_List">
+				   a.id,
+			       a.name,
+			       a.link,
+			       a.state,
+			       a.icon,
+			       a.need_login,
+			       a.open_type,
+			       a.urltype,
+			       a.app_type_id,
+			       t.app_type,
+			       a.sys_type,
+			       a.weight,
+			       a.apple
+	</sql>
+
+
+	<!--查询题头应用 -->
+	<select id="queryAppWithoutFirstSys" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app a, t_app_type t
+		where a.app_type_id = t.id
+			and	 a.state=1 and a.firstplace=1
+		and a.omit=1 and a.citycode = #{citycode}
+		 <if test="sys != null and sys != ''">
+	    and a.${sys} = 1
+	  	</if>
+		 order by a.weight desc
+	</select>
+	
+	<!--查询所有应用 -->
+	<select id="queryAppWithoutSys" resultMap="BaseResultMap">
+				 select    
+				 <include refid="Base_Column_List" />
+				   from t_app a, t_app_type t
+				 where a.app_type_id = t.id
+				   and a.sys_type = 0
+				   and a.state = 1
+				   and a.omit = 1
+				   and citycode = #{citycode}
+				   <if test="apple != null and apple != ''">
+				    and a.apple = #{apple}
+				  	</if> 
+				 order by t.des asc, a.weight desc
+	</select>
+	
+	<!--查询所有应用 -->
+	<select id="allforapp" resultMap="BaseResultMap">
+				 select    
+				 <include refid="Base_Column_List" />
+				   from t_app a, t_app_type t
+				 where a.app_type_id = t.id
+				   and a.sys_type = 0
+				   and a.state = 1
+				   and a.omit = 1
+				   and citycode = #{cityCode}
+				   <if test="sys != null and sys != ''">
+				    and a.${sys} = 1
+				  	</if>
+				 order by t.des asc, a.weight desc
+	</select>
+	
+	<select id="queryAppWithoutSyshg" resultMap="BaseResultMap">
+				 select    
+				 <include refid="Base_Column_List" />
+				   from t_app_hg a, t_app_type t
+				 where a.app_type_id = t.id
+				   and a.sys_type = 0
+				   and a.state = 1
+				   and a.omit = 1
+				   and citycode = #{citycode}
+				   <if test="apple != null and apple != ''">
+				    and a.apple = #{apple}
+				  	</if> 
+				 order by t.des asc, a.weight desc
+	</select>
+
+	<!-- 查询中部系统应用 -->
+	<select id="querySysApp" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app a, t_app_type t
+		where a.app_type_id = t.id
+				and   a.state=1  and a.omit = 1 and a.secondplace = 1
+		and a.citycode = #{citycode}  
+		 <if test="sys != null and sys != ''">
+	    	and a.${sys} = 1
+	  	</if>
+		order by a.weight desc
+	</select>
+	
+	<!-- 广告应用 -->
+	<select id="fetchAdvertisingInforApps" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app a, t_app_type t
+		where a.app_type_id = t.id
+				 and  a.state=1 and  a.omit = 1 and a.adplace = 1
+		and a.citycode = #{citycode} order by a.weight 
+	</select>
+	
+	<!-- 头部广告应用 -->
+	<select id="fetchThirdInforApps" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app a, t_app_type t
+		where a.app_type_id = t.id
+				 and  a.state=1 and  a.omit = 1 and a.thirdplace = 1
+		and a.citycode = #{citycode} order by a.weight 
+	</select>
+	<!-- **********************分界线*********************** -->
+
+	<!-- 根据角色ID查询App -->
+	<select id="findAppByRoleId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app
+		where state=1 and id in(select app_id from
+		t_role_app where
+		role_id=#{roleId,jdbcType=INTEGER})
+		<!-- or sys_type=1 -->
+		order by weight desc
+	</select>
+
+	<!-- 根據用戶ID查询app -->
+	<select id="findAppByUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app
+		where state=1 and id in (select app_id from
+		t_user_app where
+		user_id=#{userId,jdbcType=VARCHAR})
+		<!-- or sys_type=1 -->
+		order by weight desc
+	</select>
+	
+	<!-- 查询apptype -->
+	<select id="queryAppType" resultType="java.lang.String">
+		select
+		app_type_id
+		from t_app
+		where state=1 group by app_type_id
+	</select>
+
+
+	<!-- 根据uid和 sysType查询app MR-->
+	<select id="findAppByUserIdAndType" resultType="com.mscs.app.web.dao.pojo.AppVo">
+		select a.*,case
+		when b.user_id is null
+		then 0
+		else 1
+		end
+		as is_col 
+		from t_app a 
+		left join t_user_app b on a.id=b.app_id and b.user_id=#{userId,jdbcType=VARCHAR}
+		where a.state=1 and a.id in(
+			select app_id from t_role_app 
+			where role_id=#{type,jdbcType=INTEGER}
+		)
+		<!--or a.sys_type=1 -->
+		order by weight desc
+	</select>
+	
+	<select id="fetchAffairsActive" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_app a, t_app_type t
+		where a.app_type_id = t.id
+				 and  a.state=1 and  a.omit = 1 
+		and a.citycode = #{citycode} and a.app_type_id = '10' and a.apple=1 order by a.weight 
+	</select>
+
+</mapper>

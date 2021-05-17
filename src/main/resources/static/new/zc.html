@@ -1,0 +1,120 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>码上富裕</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-siteapp"/>
+  <link rel="stylesheet" href="css/amazeui.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <style type="text/css">
+  	.myapp-login-form-submit{
+		    background: #3a6ef8;
+		    border-radius: 30px;
+		    border-color: #3a6ef8;
+	}
+	.myapp-login-form-submit:hover {
+	    background: #3a6ef8;
+	    border-color: #3a6ef8;
+	}
+	.myapp-login-form-shortcut .myapp-login-form-hr-font{
+		color: #0c0c0c;
+	}
+.left1{
+	float: left; font-size: 12px;
+}
+.right1{
+	float: right;font-size: 12px;
+}
+  </style>
+</head>
+<body>
+<div class="am-g">
+	<!-- LOGO -->
+	<div class="am-u-sm-12 am-text-center" >
+		<img src="img/mscs.png" >
+	</div>
+	<!-- 登陆框 -->
+	<div class="am-u-sm-11 am-u-sm-centered">
+	<form class="am-form">
+	  <fieldset class="myapp-login-form am-form-set">
+		<div class="am-form-group am-form-icon">
+			<i class="am-icon-user"></i>
+			<input type="text" class="myapp-login-input-text am-form-field" placeholder="请输入您的账号">
+		</div>
+	    <div class="am-form-group am-form-icon">
+			<i class="am-icon-lock"></i>
+			<input type="text" class="myapp-login-input-text am-form-field" placeholder="请输入密码">
+		</div>
+		<div class="am-form-group am-form-icon">
+			<i class="am-icon-lock"></i>
+			<input type="text" class="myapp-login-input-text am-form-field" placeholder="请再次输入密码">
+		</div>
+		<div class="am-form-group am-form-icon">
+			
+			<input type="text" class="myapp-login-input-text am-form-field" id="show" placeholder="请输入验证码">
+			<input id="get_pass" type="button" style="margin-top: 20px; background: #0075F0; border: 1px;color: #fff; padding: 5px; border-radius:10px;" value="获取验证码"/>
+		</div>
+	  </fieldset>
+	  <button type="submit" class="myapp-login-form-submit am-btn am-btn-primary am-btn-block ">注册</button>
+	</form>
+	</div>
+	
+</div>
+<div
+  class="am-slider am-slider-default"
+  data-am-flexslider="{controlNav: 'thumbnails', directionNav: false, slideshow: false}">
+  <ul class="am-slides">
+    <li data-thumb="http://s.amazeui.org/media/i/demos/pure-4.jpg?imageView2/0/w/360">
+      </li>
+  </ul>
+</div>
+
+<script src="js/jquery.min.js"></script>
+
+<script src="js/amazeui.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+<script type="text/javascript">
+window.onload=function(){
+	$("#get_pass").onclick=function(){
+		var num=60;
+		var timer=setInterval(function(){
+			$("#get_pass").value=num+"秒";
+			num=num-1;
+			if(num<=0){
+				num=60;
+				
+				clearInterval(timer);
+				$("#get_pass").value="获取验证码";
+			}
+		},1000);
+		$("#show").value="";
+	}
+	}
+ 
+function showMa(){
+	var str="";
+	for(var i=0;i<6;i++){
+		str+=parseInt(Math.random()*60);
+	}
+	// $("#spanMa").innerHTML=str;
+	$("#show").value=str;
+} 
+ 
+function $(str){//#box .cls  p
+	if(str.charAt(0)=="#"){
+		return document.getElementById(str.substring(1));
+	}else if(str.charAt(0)=="."){
+		return document.getElementsByClassName(str.substring(1));
+	}else{
+		return document.getElementsByTagName(str);
+	}
+}	
+</script>
+</html>

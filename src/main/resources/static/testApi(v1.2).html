@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>JSON接口测试工具(ver1.2)</title>
+
+		<script src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+		<script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<script src="http://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+		<script src="http://cdn.bootcss.com/clipboard.js/1.7.1/clipboard.min.js"></script>
+		<link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="http://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+
+		<!--
+		<script src="js/jquery.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/sweetalert.min.js"></script>
+		<script src="js/clipboard.min.js"></script>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/sweetalert.min.css" rel="stylesheet">
+		-->
+		<style>
+			* {
+				padding: 0;
+				margin: 0px;
+			}
+			
+			li {
+				list-style: none;
+			}
+			
+			a {
+				text-decoration: none;
+			}
+			
+			.container-fluid {
+				transition: all 0.3s;
+			}
+			
+			.container-fluid.open {
+				transform: scale(0.9);
+			}
+			
+			.row {
+				padding-top: 5px;
+				padding-bottom: 5px;
+			}
+			
+			pre {
+				min-height: 100px;
+				max-width: 100%;
+				word-wrap: break-word;
+				white-space: pre-wrap;
+			}
+			
+			.get-data-group {
+				max-height: 100vh;
+				overflow-y: auto;
+			}
+			
+			.from-data {}
+			
+			.get-data.error {
+				color: red;
+			}
+			
+			.border-bottom {
+				margin: 10px 0px;
+				border-bottom: 1px solid #cecece;
+			}
+			
+			.ver_doc {
+				width: 100%;
+				height: 100%;
+				top: 0px;
+				left: 0px;
+				position: fixed;
+				color: #fff;
+				background: rgba(0, 0, 0, 0.8);
+				z-index: 20;
+				transition: all .3s linear;
+			}
+			
+			.ver_doc.hide {
+				display: none;
+			}
+			
+			.ver_doc.init {
+				background: rgba(0, 0, 0, 0);
+			}
+			
+			.ver_doc.close {
+				background: rgba(0, 0, 0, 0);
+			}
+			
+			.ver_doc .abs {
+				position: absolute;
+				left: 50%;
+				top: 30%;
+				transform: translate(-50%, -50%);
+				transition: all .3s;
+			}
+			
+			.ver_doc.init .abs {
+				transform: scale(5);
+			}
+			
+			.ver_doc.close .abs {
+				transform: scale(5);
+			}
+			
+			.ver_doc .title {
+				font-size: 20px;
+			}
+			
+			.ver_doc .content {
+				font-size: 14px;
+			}
+		</style>
+		<script>
+			var _from = {};
+			var _get = {};
+			var _row = '';
+			var _configList = {};
+			$(function() {
+
+				_row = '<div class="row from-data">' + $(".from-data").html() + '</div>';
+				keyUpInit();
+				loadSaveInit();
+
+				loadConfigList(localStorage.getItem("apiTestConfigList"));
+
+				$(".ver").click(function() {
+					var title_html = "<p>WHAT'S NEW?</p>"
+					var content_html = "<P>1,重新构建了保存机制，保存的配置列表将存在localStorage里,再次访问将直接加载。</P>"
+					content_html += "<p>2,可对已保存的配置删除与覆盖，接口地址将作为已保存配置的唯一标识。</p>"
+					content_html += "<p>3,增加了导入，导出功能，可把单条或所有配置信息复制到剪切板通过QQ等聊天工具传播，实现配置异地化。</p>"
+					content_html += "<p>&nbsp;</p><p>对于接口需要session验证的使用方法说明：</p>"
+					content_html += "<p>将本文件放到web服务目录下，通过web服务访问登录页登录获取session，在通过web服务访问此文件</p>"
+					content_html += "<p>例如：先访问http://localhost:8080/login.jsp登录，再访问同域名同端口下的http://localhost:8080/testApi(v1.2).html进行测试接口</p>"
+					content_html += "<p><br>祝大家测试一次通过，永无bug。</p>"
+					//$(".container-fluid").addClass("open")
+					$(".ver_doc").removeClass("hide")
+					setTimeout(function() {
+						$(".ver_doc").removeClass("init");
+					}, 10)
+
+					$(".ver_doc").find(".title").html(title_html)
+					$(".ver_doc").find(".content").html(content_html)
+					$(".ver_doc").click(function() {
+						//$(".container-fluid").removeClass("open");
+						$(".ver_doc").addClass("close");
+						setTimeout(function() {
+							$(".ver_doc").addClass("hide").addClass("init").removeClass("close");
+						}, 300)
+
+					})
+
+				})
+
+			})
+
+			function alert(msg) {
+				swal("", msg);
+			}
+
+			function confirm(msg, callback) {
+				swal({
+					title: "",
+					text: msg,
+					type: "info",
+					showCancelButton: true,
+					cancelButtonText: "取消",
+					showConfirmButton: true,
+					confirmButtonText: "确定"
+				}, function(isConfirm) {
+					if(isConfirm && $.isFunction(callback)) {
+						callback();
+					}
+				})
+			}
+			//加载保存配置列表
+			function loadConfigList(jsontext) {
+				if(jsontext != "" && jsontext != null) {
+					try {
+						_configList = eval('(' + jsontext + ')');
+						$(".saveConfigList option.config").remove();
+						if(!$.isEmptyObject(_configList)) {
+							$.each(_configList, function(index, obj) {
+								$(".saveConfigList").append('<option class="form-control config" value="' + index + '">' + index + '</option>');
+							})
+						}
+
+					} catch(e) {
+						_configList = {};
+						console.dir(e)
+					}
+				} else {
+
+					console.log(1)
+				}
+
+			}
+			//回车事件
+			function keyUpInit() {
+				$(document).on("keyup", "input.form-control", function(e) {
+					if(e.which == 13) {
+						send();
+					}
+				})
+				$(document).on("click", "textarea#exportConfigTextarea", function() {
+					$(this).select();
+				})
+			}
+			//删除行
+			function deleteRow(e) {
+				$(e).parent().parent().remove();
+			}
+			//增加行
+			function addRow() {
+				$(".from-data-list").append(_row);
+			}
+			//转义
+			function HTMLEncode(html) {
+				var temp = document.createElement("div");
+				(temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
+				var output = temp.innerHTML;
+				temp = null;
+				return output;
+			}
+			//导入当前配置
+			function importConfig() {
+				var html = '<textarea placehoder="请把导出的配置粘贴到此文本框中" id="importConfigTextarea" class="form-control" style="height:100px;resize:none;">' + '' + '</textarea>';
+				html += '<p>请把导出的配置粘贴到该文本框中</p>';
+				swal({
+					title: "",
+					text: html,
+					html: true,
+					closeOnConfirm: false,
+					showConfirmButton: true,
+					showCancelButton: true,
+					confirmButtonText: "导入",
+					cancelButtonText: "关闭"
+				}, function(isConfirm) {
+					if(isConfirm) {
+						var content = $("#importConfigTextarea").val();
+						try {
+							importJson = eval('(' + content + ')');
+						} catch(e) {
+							swal("导入失败", "json格式不正确1", "error");
+						}
+
+						if(importJson && importJson['testApiSaveConfigList']) {
+							for(key in importJson['testApiSaveConfigList']) {
+								_configList[key] = importJson['testApiSaveConfigList'][key]
+							}
+							swal("导入成功", "配置已导入到保存配置列表", "success");
+							window.localStorage.setItem("apiTestConfigList", JSON.stringify(_configList));
+							loadConfigList(localStorage.getItem("apiTestConfigList"));
+						} else {
+							swal("导入失败", "json格式不正确", "error");
+						}
+					}
+				})
+			}
+			//导出当前保存配置
+			function exportConfig(isAll) {
+				var apiurl = $.trim($(".api_url").val());
+				if(apiurl != "" || isAll) {
+					if(isAll) {
+						var exportConfigList = {};
+						exportConfigList['testApiSaveConfigList'] = {};
+						exportConfigList['testApiSaveConfigList'] = _configList;
+					} else {
+						var exportConfigList = {};
+						exportConfigList['testApiSaveConfigList'] = {};
+						var exportConfig = {};
+						exportConfig[apiurl] = [];
+						$(".from-data").each(function() {
+							if($(this).find(".key").val() != "") {
+								exportConfig[apiurl].push({
+									"key": $(this).find(".key").val(),
+									"value": $(this).find(".value").val()
+								});
+							}
+						})
+						exportConfigList['testApiSaveConfigList'] = exportConfig;
+
+					}
+					console.dir(exportConfigList)
+					var html = '<textarea id="exportConfigTextarea" class="form-control" style="height:100px;resize:none;">' + HTMLEncode(JSON.stringify(exportConfigList)) + '</textarea>';
+					html += '<p></p>';
+					swal({
+						title: "",
+						text: html,
+						type: "",
+						html: true,
+						closeOnConfirm: false,
+						showConfirmButton: true,
+						showCancelButton: true,
+						confirmButtonText: "复制",
+						cancelButtonText: "关闭"
+					}, function(isConfirm) {
+						if(!isConfirm) {
+							endClipboard();
+						}
+					})
+
+					$(".sweet-alert .sa-button-container .confirm").attr("data-clipboard-action", "copy")
+					$(".sweet-alert .sa-button-container .confirm").attr("data-clipboard-target", "#exportConfigTextarea")
+
+					var clipboard = new Clipboard('.sweet-alert .sa-button-container .confirm');
+					clipboard.on('success', function(e) {
+						swal("", "复制成功", "success");
+						endClipboard();
+					});
+					clipboard.on('error', function(e) {
+						swal("", "复制失败", "error")
+						$("textarea#exportConfig").select();
+						endClipboard();
+					});
+
+				} else {
+					swal("", "接口地址不能为空！", "warning")
+				}
+
+				function endClipboard() {
+					$(".sweet-alert .sa-button-container .confirm").removeAttr("data-clipboard-action")
+					$(".sweet-alert .sa-button-container .confirm").removeAttr("data-clipboard-target")
+
+					console.log(clipboard)
+					clipboard.destroy();
+					console.log(clipboard)
+				}
+			}
+			//保存当前配置
+			function saveConfig() {
+				if($.trim($(".api_url").val()) != "") {
+					var apiurl = $(".api_url").val();
+					if(!_configList[apiurl]) {
+						$(".saveConfigList").append('<option class="form-control config" value="' + apiurl + '">' + apiurl + '</option>');
+					}
+					_configList[apiurl] = [];
+					$(".from-data").each(function() {
+						if($(this).find(".key").val() != "") {
+							_configList[apiurl].push({
+								"key": $(this).find(".key").val(),
+								"value": $(this).find(".value").val()
+							});
+						}
+					})
+					$(".saveConfigList option[value='" + apiurl + "']").attr("selected", "true");
+					swal("保存成功", "该配置已保存到缓存中", "success");
+					window.localStorage.setItem("apiTestConfigList", JSON.stringify(_configList));
+				} else {
+					swal("", "接口地址不能为空！", "warning")
+
+				}
+			}
+			//删除选中配置
+			function deleteConfig() {
+				if($("option.config:selected").length > 0) {
+					delete _configList[$("option.config:selected").val()];
+					window.localStorage.setItem("apiTestConfigList", JSON.stringify(_configList))
+					$("option.config:selected").remove();
+					resetConfig();
+
+				} else {
+					alert("未选择接口配置")
+				}
+
+			}
+			//清空保存配置列表
+			function deleteAllConfig() {
+				_configList = {};
+				window.localStorage.setItem("apiTestConfigList", "{}");
+				loadConfigList(localStorage.getItem("apiTestConfigList"));
+
+			}
+			//更换保存配置初始化
+			function loadSaveInit() {
+
+				$(".saveConfigList").on("change", function() {
+					if($("option.config:selected").length > 0) {
+						apiurl = $("option.config:selected").val();
+						var config = _configList[apiurl];
+						$(".from-data").remove();
+						for(n = 0; n < config.length; n++) {
+							addRow()
+						}
+						$(".api_url").val(apiurl)
+						$.each(config, function(index, obj) {
+							$(".key").eq(index).val(obj.key)
+							$(".value").eq(index).val(obj.value)
+						});
+						$(".send-data,.get-data").html("")
+					} else {
+						resetConfig();
+					}
+
+				})
+
+			}
+			//重置
+			function resetConfig() {
+				$(".saveConfigList option").eq(0).attr('selected', 'true');
+				$(".api_url").val("");
+				$(".from-data").remove();
+				addRow();
+			}
+
+			function send() {
+				_from = {};
+				if($.trim($(".api_url").val()) != "") {
+					var api = $.trim($(".api_url").val());
+					$(".from-data").each(function() {
+						if($.trim($(this).find(".key").val()) != "") {
+							_from[$.trim($(this).find(".key").val())] = $.trim($(this).find(".value").val())
+						}
+					})
+					console.log("发送的数据：")
+					console.dir(_from)
+					$(".send-data").html(JSON.stringify(_from, null, 2));
+
+					var startTime = 0;
+					var endTime = 0;
+					var responseTime = 0;
+					$.ajax({
+						url: api,
+						type: "get",
+						dataType: "json",
+						data: _from,
+						success: function(data) {
+							console.log("获取的数据：");
+							console.dir(data);
+							$(".get-data").html(HTMLEncode(JSON.stringify(data, null, 2)));
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							swal("", textStatus, "error")
+							$(".get-data").addClass("error").append(JSON.stringify(XMLHttpRequest, null, 2));
+						},
+						beforeSend: function() {
+							startTime = new Date().getTime();
+							$(".get-data").empty();
+							$(".get-data").removeClass("error");
+							$(".responseTime").html("(正在加载...)");
+						},
+						complete: function() {
+							endTime = new Date().getTime();
+							responseTime = endTime - startTime;
+							$(".responseTime").html("(响应时间：" + responseTime + " ms)")
+						}
+					})
+				} else {
+					swal("", "接口地址不能为空", "warning")
+				}
+
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row" style="padding-top: 0px; padding-bottom: 0px;">
+				<div class="col-sm-6 from-data-group">
+
+					<div class="row text-center">
+						<h3>JSON接口测试工具(<a href="javascript:;" title="what's new?" class="ver">ver1.2</a>)</h3>
+					</div>
+					<div class="row">
+						<div class="col-sm-10">
+							<select placeholder="" class="saveConfigList form-control">
+								<option class="no-config form-control">--保存接口配置列表--</option>
+							</select>
+						</div>
+
+						<div class="col-sm-2">
+							<button id="deleteConfig" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="btn btn-block btn-default">
+								删除
+							    <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="deleteConfig">
+								<li>
+									<a href="javascript:;" onclick="deleteConfig()">删除当前接口配置</a>
+								</li>
+								<li role="separator" class="divider"></li>
+								<li>
+									<a href="javascript:;" onclick="deleteAllConfig()">删除所有接口配置</a>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+					<div class="row">
+						<div class="col-sm-2">
+							<button id="importConfig" class="btn btn-block btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							 	导入
+							    <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="importConfig">
+								<li>
+									<a href="javascript:;" onclick="importConfig()">从剪切板导入</a>
+								</li>
+
+							</ul>
+						</div>
+						<div class="col-sm-2">
+							<button id="exportConfig" class="btn btn-block btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								导出
+							    <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu" aria-labelledby="exportConfig">
+								<li>
+									<a href="javascript:;" onclick="exportConfig(false)">导出当前接口配置到剪切板</a>
+								</li>
+								<li role="separator" class="divider"></li>
+								<li>
+									<a href="javascript:;" onclick="exportConfig(true)">导出所有接口配置到剪切板</a>
+								</li>
+							</ul>
+						</div>
+
+						<div class="col-sm-2 pull-right">
+							<button class="btn btn-block btn-default" onclick="resetConfig()">重置</button>
+						</div>
+
+						<div class="col-sm-2 pull-right">
+							<button class="btn btn-block btn-default" onclick="saveConfig()">保存</button>
+						</div>
+					</div>
+					<div class="border-bottom">
+
+					</div>
+					<div class="row">
+						<div class="col-sm-8">
+							<input type="text" placeholder="API URL" class="api_url form-control">
+						</div>
+
+						<div class="col-sm-2">
+							<button class="btn btn-block btn-success" onclick="send()">SEND</button>
+						</div>
+
+						<div class="col-sm-2 pull-right">
+							<button class="btn btn-block btn-default" onclick="addRow()">增加</button>
+						</div>
+					</div>
+					<div class="from-data-list">
+						<div class="row from-data">
+							<div class="col-sm-3">
+								<input type="text" placeholder="KEY" class="form-control key">
+							</div>
+							<div class="col-sm-7">
+								<input type="text" placeholder="VALUE" class="form-control value">
+							</div>
+							<div class="col-sm-2">
+								<button class="btn btn-block btn-default" onclick="deleteRow(this)">删除</button>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+
+					</div>
+
+				</div>
+				<div class="col-sm-6 get-data-group">
+					<div class="row">
+						发送的数据：
+					</div>
+					<div class="row">
+						<pre class="send-data"></pre>
+					</div>
+					<div class="row">
+						返回的数据：<span class="responseTime"></span>
+					</div>
+					<div class="row">
+						<pre class="get-data"></pre>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="ver_doc init hide">
+			<div class="container abs">
+				<div class="title"></div>
+				<div class="content"></div>
+			</div>
+		</div>
+	</body>
+
+</html>

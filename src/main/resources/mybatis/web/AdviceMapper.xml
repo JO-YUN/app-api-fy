@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.AdviceMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.Advice">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="advice" jdbcType="VARCHAR" property="advice" />
+		<result column="phone" jdbcType="VARCHAR" property="phone" />
+		<result column="mail" jdbcType="VARCHAR" property="mail" />
+		<result column="submit_date" jdbcType="VARCHAR" property="submitDate" />
+		<result column="read_state" jdbcType="DECIMAL" property="readState" />
+	</resultMap>
+
+
+
+	<insert id="insertSelective" parameterType="com.mscs.app.web.model.Advice">
+		insert into t_advice
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="advice != null">
+				advice,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="mail != null">
+				mail,
+			</if>
+			<if test="submitDate != null">
+				submit_date,
+			</if>
+			<if test="readState != null">
+				read_state,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="advice != null">
+				#{advice,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="mail != null">
+				#{mail,jdbcType=VARCHAR},
+			</if>
+			<if test="submitDate != null">
+				#{submitDate,jdbcType=VARCHAR},
+			</if>
+			<if test="readState != null">
+				#{readState,jdbcType=DECIMAL},
+			</if>
+		</trim>
+	</insert>
+</mapper>

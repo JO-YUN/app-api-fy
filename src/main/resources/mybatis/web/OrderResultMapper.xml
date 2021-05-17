@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mscs.app.web.dao.OrderResultMapper">
+   <insert id="saveOrder" parameterType="com.mscs.app.common.dto.req.ReqOrderResultDto">
+       insert into  T_ORDER(Py_Ordr_No,Ordr_StCd,Txn_Dt,Txn_Tm,Fee_Itm_Cd,Fee_Itm_Prj_Nm,Fee_Itm_Prj_Usr_No,Fee_Itm_Prj_Amt,Py_Chnl_Cd,Usr_ID,SIGN_INF)
+        values(
+         #{Py_Ordr_No,jdbcType=VARCHAR},
+         #{Ordr_StCd,jdbcType=VARCHAR},
+         #{Txn_Dt,jdbcType=VARCHAR},
+         #{Txn_Tm,jdbcType=VARCHAR},
+         #{Fee_Itm_Cd,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Nm,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Usr_No,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Amt,jdbcType=VARCHAR},
+         #{Py_Chnl_Cd,jdbcType=VARCHAR},
+         #{Usr_ID,jdbcType=VARCHAR},
+         #{SIGN_INF,jdbcType=VARCHAR}
+         )
+	</insert>
+	
+	<insert id="saveOrderqqhr" parameterType="com.mscs.app.common.dto.req.ReqOrderResultDto">
+       insert into  T_ORDER_QQHR(Py_Ordr_No,Ordr_StCd,Txn_Dt,Txn_Tm,Fee_Itm_Cd,Fee_Itm_Prj_Nm,Fee_Itm_Prj_Usr_No,Fee_Itm_Prj_Amt,Py_Chnl_Cd,Usr_ID,SIGN_INF)
+        values(
+         #{Py_Ordr_No,jdbcType=VARCHAR},
+         #{Ordr_StCd,jdbcType=VARCHAR},
+         #{Txn_Dt,jdbcType=VARCHAR},
+         #{Txn_Tm,jdbcType=VARCHAR},
+         #{Fee_Itm_Cd,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Nm,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Usr_No,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Amt,jdbcType=VARCHAR},
+         #{Py_Chnl_Cd,jdbcType=VARCHAR},
+         #{Usr_ID,jdbcType=VARCHAR},
+         #{SIGN_INF,jdbcType=VARCHAR}
+         )
+	</insert>
+	
+	<insert id="saveOrderhg" parameterType="com.mscs.app.common.dto.req.ReqOrderResultDto">
+       insert into  T_ORDER_HG(Py_Ordr_No,Ordr_StCd,Txn_Dt,Txn_Tm,Fee_Itm_Cd,Fee_Itm_Prj_Nm,Fee_Itm_Prj_Usr_No,Fee_Itm_Prj_Amt,Py_Chnl_Cd,Usr_ID,SIGN_INF)
+        values(
+         #{Py_Ordr_No,jdbcType=VARCHAR},
+         #{Ordr_StCd,jdbcType=VARCHAR},
+         #{Txn_Dt,jdbcType=VARCHAR},
+         #{Txn_Tm,jdbcType=VARCHAR},
+         #{Fee_Itm_Cd,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Nm,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Usr_No,jdbcType=VARCHAR},
+         #{Fee_Itm_Prj_Amt,jdbcType=VARCHAR},
+         #{Py_Chnl_Cd,jdbcType=VARCHAR},
+         #{Usr_ID,jdbcType=VARCHAR},
+         #{SIGN_INF,jdbcType=VARCHAR}
+         )
+	</insert>
+	
+</mapper>

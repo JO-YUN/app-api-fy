@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://cc.leftbox.cn/zw/sxxq.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+ <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>事项详情</title>
+<link href="./details/bootstrap.css" rel="stylesheet" type="text/css">	
+<link href="./details/layer.css" rel="stylesheet" type="text/css">	
+<script src="./details/layer.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/mui.css" />
+<link rel="stylesheet" type="text/css" href="../css/mui.showLoading.css" />
+<script src="../js/mui.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/mui.showLoading.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./data/details.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+
+	
+	
+</script>
+
+	<style>
+	.dibuwenzi{
+			text-align: center;background-color: #0d84e2;height: 4rem;
+			line-height: 4rem;font-size: 15px;font-weight: 400;width: 100%; margin:  0 auto;margin-top: 5px;
+		}
+		.dibuwenzi a{ color: #fff;}
+	.container-fluid {
+     padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto !important;
+    margin-left: auto !important
+		} 
+		
+		.head{ 
+			background-color: #197ef0; background-repeat:no-repeat;
+			background-size: 100% 100%;height: 80px; 
+
+		}
+	
+	body,td,th {
+	
+		background-color: #f9f9f9;font-family: "Microsoft YaHei"
+}
+		
+		footer {
+			text-align: center;margin-top: 100px
+		}
+		.form-control{
+		
+		}
+		form{
+			width:80%;margin: 0 auto
+		}
+
+		.biaodan{
+			padding-left: 20px;
+    background: #fff;
+    height: 100px;
+    line-height: 20px;
+		}
+		.biaodan1{
+			line-height: 75px;
+            text-align: left;
+			background:#fff;
+			height: 75px;
+			margin-top: 10px
+		}
+		.zwbt{
+			width:100%
+		}
+		.zwbt1{
+			width:100%;
+			margin-top: 40px;
+			font-size:14px
+		}
+		.zwbt2{
+			width:100%;
+			
+			font-size:14px
+		}
+		.xx1{
+			line-height: 35px;
+            text-align: left;
+			background:#fff;
+			height: 75px;
+			margin-top: 5px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			
+		}
+		.xx2{
+			line-height: 35px;
+            text-align: left;
+			background:#fff;
+			height: 75px;
+			margin-top: 5px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			
+		}
+	.xx1  span	{font-size: 18px;font-weight: bold; color: #000000;background: url("./images/bs_05.jpg")no-repeat;
+		 padding-left: 20px; background-size: 6px 20px
+		
+		}
+		.xx2  span	{font-size: 20px;font-weight: bold; color: #000000;
+		
+		}
+		.layui-m-layercont{
+		   padding:10px !important
+		  }
+    </style>
+</head>
+
+<body>
+<div class="container">
+	<div class="head row">
+		<div class="col-xs-12 col-sm-12">
+			<a href="javascript:window.history.back();" style=" float: left;color: #fff;padding-top: 10px;font-size: 18px"> 返回</a>
+		</div>
+		<div class="col-xs-12 col-sm-12">
+			<p style=" text-align: center;color: #fff;font-size: 20px;">事项详情</p>
+		</div>
+		
+	</div>
+	<div class="xx2 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span id="NAME"></span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12" id="ORG_NAME"></div>
+	</div>
+	<a href="javascript:;" onclick="tc()">
+	</a><div class="row biaodan1"><a href="javascript:;" onclick="tc()">
+		<div class="col-xs-2"><img src="./details/abc_03.jpg" width="30" height="35"></div>
+		<div class="col-xs-8"><span style="font-size: 18px;color: #000000;">申请材料</span></div>
+		</a><div class="col-xs-2"><a href="javascript:;" onclick="tc()"></a><a href=""><span style="font-size: 20px;">&gt;</span></a></div>
+	</div>
+		
+		<a href="javascript:;" onclick="tc()">
+	</a><div class="row biaodan1"><a href="javascript:;" onclick="law()">
+		<div class="col-xs-2"><img src="./details/abc_07.jpg" width="30" height="35"></div>
+		<div class="col-xs-8"><span style="font-size: 18px;color: #000000;">设定依据</span></div>
+		</a><div class="col-xs-2"><a href="javascript:;" onclick="law()"></a><a href=""><span style="font-size: 20px;">&gt;</span></a></div>
+	</div>
+		
+	<ur id="items">
+<!-- 	<div class="xx1 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span>办理时间</span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12">法定工作日；周一至周五，早8晚5</div>
+	</div>
+		<div class="xx1 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span>办理时间</span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12">法定工作日；周一至周五，早8晚5</div>
+	</div>
+		<div class="xx1 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span>办理时间</span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12">法定工作日；周一至周五，早8晚5</div>
+	</div>
+		<div class="xx1 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span>办理时间</span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12">法定工作日；周一至周五，早8晚5</div>
+	</div>
+		<div class="xx1 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span>办理时间</span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12">法定工作日；周一至周五，早8晚5</div>
+	</div>
+		<div class="xx1 row">
+		<div class="xinxi1 col-xs-12 col-sm-12"><span>办理时间</span></div>
+			<div class="xinxi1 col-xs-12 col-sm-12">法定工作日；周一至周五，早8晚5</div>
+	</div> -->
+	</ur>
+	<div class="form-group">
+		<a href="" id="aform">
+            <input class="submit btn " type="submit" value="在线办理" style="width: 50%;margin-left: 25%;
+    margin-right: 25%; background: #4381ee; color: #fff;margin-top: 20px;font-size: 18px;line-height: 20px">
+		</a>
+
+    </div>
+		<nav class="navbar navbar-default navbar-fixed-bottom" style="width: 100%;">
+		
+		<div class="row" style="width: 50%; margin: 0 auto;">
+			<div class="col-xs-12 dibuwenzi" >
+				<a href="./index.html">返回首页</a>
+			</div>
+			
+		</div>
+		</nav>
+	<footer>
+		
+	</footer>
+	
+	
+	
+	
+	
+</div>
+
+
+</body></html>

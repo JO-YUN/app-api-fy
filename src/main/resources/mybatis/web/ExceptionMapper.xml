@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.ExceptionMapper">
+	<insert id="addRz">
+		insert into t_rz (rzid,ycdm,ycxx,czsj,czrq)
+		values(#{rzid,jdbcType=VARCHAR},#{ycdm,jdbcType=VARCHAR},#{ycxx,jdbcType=VARCHAR},#{czsj,jdbcType=VARCHAR},#{czrq,jdbcType=VARCHAR})
+	</insert>
+</mapper>

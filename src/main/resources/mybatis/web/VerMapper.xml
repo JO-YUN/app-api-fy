@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.VerMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.Ver">
+		<result column="id" jdbcType="VARCHAR" property="id" />
+		<result column="ver" jdbcType="VARCHAR" property="ver" />
+		<result column="pub_date" jdbcType="VARCHAR" property="pubDate" />
+		<result column="des" jdbcType="VARCHAR" property="des" />
+		<result column="code" jdbcType="VARCHAR" property="code" />
+		<result column="state" jdbcType="DECIMAL" property="state" />
+		<result column="app_link" jdbcType="VARCHAR" property="appLink" />
+		<result column="os_type" jdbcType="DECIMAL" property="osType" />
+		<result column="other_type" jdbcType="DECIMAL" property="otherType" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		id,ver,pub_date,des,code,state,app_link,os_type,other_type,log,needup
+	</sql>
+
+	<!-- 查詢全部 -->
+	<select id="queryVer" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_ver
+	</select>
+
+
+	<!-- 按照条件查询 -->
+	<select id="queryVerByCondition" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_ver
+		<where>
+			<if test="os_type != null">
+				os_type=#{osType,jdbcType=INTEGER}
+			</if>
+			<if test="other_type != null">
+				and other_type=#{otherType,jdbcType=INTEGER}
+			</if>
+		</where>
+	</select>
+
+
+</mapper>

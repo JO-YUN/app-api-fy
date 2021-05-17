@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mscs.app.web.dao.NewsTypeNHMapper">
+   
+	<sql id="query_field">
+		select 
+		      id as id,
+		      name as name,
+		      pic as pic,
+		      state as state,
+		      px as px
+	</sql>
+	<sql id="query_condition">
+		FROM t_news_type_nh
+		 <where>
+			<if test="obj.id!=null and obj.id!=''">
+				 and id=#{obj.id}
+			</if>
+			and state='Y'
+		</where> 
+		ORDER BY px asc
+	</sql>
+	<!-- 条件查询查询列表 -->
+	<select id="queryNewsTypeList" resultType="com.mscs.app.common.dto.resp.RespNewsTypeNHDto">
+		<include refid="query_field" />
+		 <include refid="query_condition"/>
+	</select>
+	
+</mapper>

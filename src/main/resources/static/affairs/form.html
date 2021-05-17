@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<!-- saved from url=(0031)http://cc.leftbox.cn/zw/bd.html -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ 
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=2,user-scalable=0" />
+<title>申请表单</title>
+<link href="./form/bootstrap.css" rel="stylesheet" type="text/css">	
+<script src="./form/jquery.js"></script><script src="./form/jquery-1.11.1.js"></script>
+<script src="./form/jquery.validate.min.js"></script>
+<script src="./form/messages_zh.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/mui.css" />
+<link rel="stylesheet" type="text/css" href="../css/mui.showLoading.css" />
+<link rel="stylesheet" type="text/css" href="../js/picker/css/mui.picker.css" />
+<link rel="stylesheet" type="text/css" href="../js/picker/css/mui.poppicker.css" />
+<link rel="stylesheet" type="text/css" href="../js/picker/css/mui.dtpicker.css" />
+<script src="../js/mui.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/mui.showLoading.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./data/form.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/picker/js/mui.picker.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/picker/js/mui.poppicker.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/picker/js/mui.dtpicker.js" type="text/javascript" charset="utf-8"></script>
+
+<script>
+$().ready(function() {
+
+  $("#commentForm").validate({
+    rules: {
+      cname: "required",
+     
+      cname: {
+        required: true,
+        minlength: 2
+      },
+      
+      sfz: {
+        required: true,
+         minlength:18
+      },
+		 iphone: {
+        required: true,
+         minlength:11
+      },
+      agree: "required"
+    },
+  })
+});
+</script>
+	<style>
+	input[type="file"] {
+    display: inline;
+    line-height:40px;
+	}
+	.dibuwenzi{
+			text-align: center;background-color: #0d84e2;height: 4rem;
+			line-height: 4rem;font-size: 15px;font-weight: 400;width: 100%; margin:  0 auto;margin-top: 5px;
+		}
+		.dibuwenzi a{ color: #fff;}
+	.container-fluid {
+     padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto !important;
+    margin-left: auto !important
+		} 
+		
+		.head{ 
+			background-color: #197ef0; background-repeat:no-repeat;
+			background-size: 100% 100%;height: 80px;
+
+			
+		}
+	
+	body,td,th {
+	
+		background-color: #f5f5f5;font-family: "Microsoft YaHei"
+}
+		
+		footer {
+			text-align: center;margin-top: 100px
+		}
+		.form-control{
+		
+		}
+		form{
+			width:80%;
+			margin: 0 auto;
+			
+		}
+		
+		.error{
+	color:red;
+}
+		.biaodan{
+			
+			margin-top:20px
+		}
+		
+		.form-group{
+			display:inline;
+		}
+		.xx1{
+			width:95%;
+			margin:0 auto;
+			line-height: 35px;
+            text-align: left;
+			background:#fff;
+			height: 75px;
+			margin-top: 5px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			
+		}
+		.xx2{
+			line-height: 35px;
+            text-align: left;
+			background:#fff;
+			height: 75px;
+			margin-top: 5px;
+			padding-top: 5px;
+			padding-bottom: 5px;
+			
+		}
+		.xx1  span	{font-size: 18px;font-weight: bold; color: #000000;background: url("./images/bs_05.jpg")no-repeat;
+		 padding-left: 20px; background-size: 6px 20px
+		
+		}
+		.xx2  span	{font-size: 20px;font-weight: bold; color: #000000;
+		
+		}
+		.layui-m-layercont{
+		   padding:10px !important
+		}
+		 .att-list {
+			width: 95%;
+    		margin: 0 auto;
+    	}
+    	.nbt{
+    		
+    	}
+    </style>
+
+
+</head>
+
+<body>
+<div class="container">
+	<div class="head row">
+		<div class="col-xs-12 col-sm-12">
+			<a href="javascript:window.history.back();" style=" float: left;color: #fff;padding-top: 15px;font-size: 18px">返回</a>
+		</div>
+		<div class="col-xs-12 col-sm-12">
+			<p style=" text-align: center;color: #fff;font-size: 20px;">申请书</p>
+		</div>
+	</div>
+	<div class="row biaodan" onclick="">
+	
+    <div id="att"></div>
+	<form class="cmxform" id="form" action="webApply" novalidate="novalidate" method="get" >
+		<div id="commentForm"></div>
+        <input class="submit btn " id="submitBT" type="button" value="表单提交" style="width: 50%;margin-left: 25%;
+    margin-right: 25%; background: #4381ee; color: #fff;margin-top: 10px;font-size: 18px;line-height: 20px">
+    </form>
+	</div>
+	
+	<nav class="navbar navbar-default navbar-fixed-bottom" style="width: 100%;">
+		
+		<div class="row" style="width: 50%; margin: 0 auto;">
+			<div class="col-xs-12 dibuwenzi" >
+				<a href="./index.html">返回首页</a>
+			</div>
+		</div>
+	</nav>
+	<footer>
+	</footer>
+</div>
+</body></html>

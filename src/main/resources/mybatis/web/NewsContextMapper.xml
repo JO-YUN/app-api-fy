@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mscs.app.web.dao.NewsContextMapper">
+    <select id="getNRListByID"  resultType="com.mscs.app.web.model.NewsContext">
+	    SELECT 
+		    NRID   as id,
+		    XH as count ,
+		    NR as context
+		from t_nr_xx 
+		where NRID = #{id,jdbcType=VARCHAR} 
+		order by xh 
+	</select>
+</mapper>

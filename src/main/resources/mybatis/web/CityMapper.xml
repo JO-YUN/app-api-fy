@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.CityMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.City">
+		<result column="dm" jdbcType="VARCHAR" property="dm" />
+		<result column="dmlx" jdbcType="VARCHAR" property="dmlx" />
+		<result column="mc" jdbcType="VARCHAR" property="mc" />
+		<result column="fhdm" jdbcType="VARCHAR" property="fhdm" />
+		<result column="sjdm" jdbcType="VARCHAR" property="sjdm" />
+		<result column="sjz" jdbcType="VARCHAR" property="sjz" />
+		<result column="bzdm" jdbcType="VARCHAR" property="bzdm" />
+		<result column="px" jdbcType="DECIMAL" property="px" />
+		<result column="state" jdbcType="DECIMAL" property="state" />
+	</resultMap>
+	
+	<!-- 基本字段 -->
+	<sql id="Base_Column_List">
+		dm, dmlx, mc, px, state, fhdm, sjdm, sjz, bzdm
+	</sql>
+
+
+	<!--查询题头应用 -->
+	<select id="fetchSiteInfor" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM T_CODE 
+		<where>
+			state = '1'
+		  <if test="obj.fhdm != null and obj.fhdm != ''">
+			and fhdm =#{obj.fhdm}
+		  </if>
+		  <if test="obj.sjdm != null and obj.sjdm != ''">
+			and sjdm =#{obj.sjdm}
+		  </if>
+		  <if test="obj.sjz != null and obj.sjz != ''">
+			and sjz =#{obj.sjz}
+		  </if>
+		</where>
+		order by px 
+	</select>
+	
+	
+
+
+</mapper>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="PageMapper">
+ 	<sql id="countHead">
+ 		select count(*) 
+ 	</sql>
+	<sql id="pageHead">
+		select  * from   
+			(select a.*, rownum rn  from 
+					 (
+ 	</sql>
+ 	<!-- <sql id="pageFoot">
+ 	<![CDATA[
+ 	
+ 		               ) A
+      	WHERE ROWNUM <= #{page.endIndex}
+		)
+		WHERE RN >= #{page.beginIndex}
+	 ]]>
+ 	</sql> -->
+ 	
+ 	<sql id="pageFoot">
+ 		limit #{page.beginIndex},#{page.pageSize}
+ 	</sql>
+</mapper>

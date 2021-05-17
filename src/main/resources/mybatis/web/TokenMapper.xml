@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mscs.app.web.dao.TokenMapper">
+	<resultMap id="BaseResultMap" type="com.mscs.app.web.model.Token">
+		<result column="token" jdbcType="VARCHAR" property="token" />
+		<result column="user_id" jdbcType="VARCHAR" property="userId" />
+		<result column="modify_date" jdbcType="VARCHAR" property="modifyDate" />
+	</resultMap>
+
+
+	<sql id="Base_Column_List">
+		token,user_id,modify_date
+	</sql>
+
+	<!-- 插入 用戶ID 和 Token 和修改日期 -->
+	<insert id="insert" parameterType="com.mscs.app.web.model.Token">
+		insert into t_token
+		(user_id,
+		token,modify_date)
+		values
+		(#{userId,jdbcType=VARCHAR},
+		#{token,jdbcType=VARCHAR}, #{modifyDate,jdbcType=VARCHAR})
+	</insert>
+
+
+	<!-- 根据Token进行查询 -->
+	<select id="findInfoByToken" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_token where token=#{token,jdbcType=VARCHAR}
+		<!-- state=1 and -->
+	</select>
+
+	<!-- 根据UID进行查询 -->
+	<select id="findInfoByUserId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from t_token where user_id=#{userId,jdbcType=VARCHAR}
+		<!-- state=1 and -->
+	</select>
+
+
+
+	<!-- 更新 -->
+	<update id="updateByToken" parameterType="com.mscs.app.web.model.Token">
+		update t_token
+		<set>
+			<if test="modify_date != null">
+				modify_date = #{modifyDate,jdbcType=VARCHAR},
+			</if>
+			<if test="user_id != null">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where token = #{token,jdbcType=VARCHAR}
+	</update>
+
+
+	<!-- 根据Token删除记录 -->
+	<delete id="deleteRecordByToken">
+		delete from t_token
+		where token =
+		#{token,jdbcType=VARCHAR}
+	</delete>
+
+	<!-- 根据UID删除记录 -->
+	<delete id="deleteRecordByUID">
+		delete from t_token
+		where user_id =
+		#{userId,jdbcType=VARCHAR}
+	</delete>
+
+
+
+
+</mapper>

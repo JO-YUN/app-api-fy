@@ -1,0 +1,188 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0" />
+<title>码上富裕</title>
+<link href="css/amazeui.css" rel="stylesheet" type="text/css" />
+<style>
+body{
+	padding: 0; margin: 0;
+	font-size: 14px;
+}
+.headline2 ul li {
+	display:inline-block;
+	list-style:none;
+	width:25%;
+	border:2px solid #00C6FF;
+	 border-top:none;
+	 border-left: none;
+	 border-right: none;
+	text-align: center;
+	
+}
+.headline2 ul{
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	    width: 100%;
+		font-size: 16px;
+}
+.qiu {
+	background:#307dff;
+}
+
+
+		.head a{
+			color: #fff;
+		}
+	
+		body{
+			padding: 0;margin: 0;
+			font-family: "microsoft yahei";
+			background: #ffffff;
+		}
+		.biaodan{
+			margin-top: 5%;
+		}
+		.anniu{
+			width: 40%;
+			margin: 0 auto;
+		}
+	.am-header-default {
+	    background-color: #307dff;
+	}
+	.am-header-default .am-header-title a {
+	    color: #fff;
+	    font-size: 18px;
+	}
+</style>
+</head>
+<body>
+	  <header data-am-widget="header"
+	          class="am-header am-header-default">
+	      <div class="am-header-left am-header-nav">
+	          <a href="javascript:window.history.go(-1)">
+	              返回
+	          </a>
+	      </div>
+	
+	      <h1 class="am-header-title">
+	          <a href="#title-link">
+	            完善个人信息测试demo
+	          </a>
+	      </h1>
+	
+	  </header>
+
+	<div class="container">
+		<form action="" class="am-form"  name="user">
+		  <fieldset>
+		 <div class="am-form-group">
+		 	  			
+
+		 </div>
+		    <div class="am-form-group">
+		      <label for="name">姓名：</label>
+		      <input type="text" id="name" name="name" placeholder="输入姓名（至少 2个字符）" required/>
+		    </div>
+		
+			<div class="am-form-group">
+			      <label for="mobile">手机号：</label>
+			      <input type="number" id="mobile"  name="mobile" class="js-pattern-mobile"
+			             placeholder="输入手机号" minlength="11" required/>
+			    </div>
+		    <div class="am-form-group">
+		      <label for="adress">地址：</label>
+		      <input type="text" id="adress" name="adress" placeholder="输入地址" required/>
+		    </div>
+		
+		    <div class="am-form-group">
+		      <label for="age">年龄：</label>
+		      <input type="number" id="age" name="age"  placeholder="输入年龄" min="1" max="110" required />
+		    </div>
+		
+		
+		   <div class="am-form-group">
+		         <input type="radio" id="male" name="sex" value="1" checked><label for="male">男</label>
+		         <input type="radio" id="female" name="sex" value="0"><label for="female">女</label>
+		       </div>
+		
+		   <div class="anniu">
+		   	<button id="signUp"  onclick="add(this.form)" class="am-btn am-btn-secondary" style="width: 100%; background: #307dff;" type="submit">提交</button>
+		   </div>
+		  </fieldset>
+		</form>
+		<!-- 提示信息占位符-->
+		<p></p>
+	</div>
+</body>
+	
+	<script>
+	    function add(form) {
+	        //ajax提交
+	        var request = new XMLHttpRequest();
+	
+	        request.onreadystatechange = function () {
+	
+	            // 请求完成并已获取到了响应数据
+	            if (request.readyState === 4 && request.status === 200) {
+	                // 解析服务器返回的异步数据(json格式)
+	                var data = JSON.parse(request.responseText);
+	
+	                // 获取提示信息占位元素
+	                var tips = form.lastElementChild;
+	                tips.innerText = data.message;
+	
+	                // 根据返回的状态,添加适当的class样式
+	                if (data.status === 1) {
+	                    tips.classList.add('success');
+	                }
+	                // 没有更新或更新错误采用同一个样式
+	                else {
+	                    tips.classList.add('error');
+	                }
+	                // 2秒后跳转到上一个页面,即用户列表页
+	                setTimeout(function (){
+	                    // 返回上一页并刷新,将新增记录显示出来
+	                    history.back();
+	                    // 因为有框架,所以加上top, 从顶级开始刷新页面
+	                    top.location.reload();
+	                },2000);
+	            }
+	
+	        };
+	
+	        request.open('POST','xxx.php?action=add');
+	
+	        request.setRequestHeader('content-type','application/x-www-form-urlencoded');
+	
+	        var data = {
+	          name: form.name.value,
+	          age: form.age.value,
+	          sex: form.sex.value,
+	          adress: form.adress.value,
+	          mobile: form.mobile.value
+	        };
+	
+	        // 前端js方式来获取当前时间戳
+	        // var hiredate = parseInt(Date.parse(new Date()).toString().substr(0,10));
+	        // 入职时间字段,js获取当前的时间戳比较麻烦,我们放在php中获取
+	
+	        var staff = 'name='+data.name
+	            +'&age='+data.age 
+	            +'&sex='+data.sex
+	            +'&adress='+data.adress
+	            +'&mobile='+data.mobile;
+	
+	        request.send(staff);
+	    }
+	</script>
+
+
+
+
+</html>

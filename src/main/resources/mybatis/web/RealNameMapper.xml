@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mscs.app.web.dao.RealNameMapper">
+	<!-- 保存信息 --><!-- parameterType="java.util.Map" -->
+	<insert id="saveRealNameInfo" parameterType="com.mscs.app.web.model.RealName">
+		insert into t_jzg_fy
+		(id,name,numberid,phone,unionid,openid,
+		headimgurl,nickname,language,country,
+		province,city,datetime,state
+		)
+		values
+		(
+		#{ id,jdbcType=VARCHAR},
+		#{ name,jdbcType=VARCHAR},
+		#{ numberid,jdbcType=VARCHAR},
+		#{ phone,jdbcType=VARCHAR},
+		#{ unionid,jdbcType=VARCHAR},
+		#{ openid,jdbcType=VARCHAR},
+		#{ headimgurl,jdbcType=VARCHAR},
+		#{ nickname,jdbcType=VARCHAR},
+		#{ language,jdbcType=VARCHAR},
+		#{ country,jdbcType=VARCHAR},
+		#{ province,jdbcType=VARCHAR},
+		#{ city,jdbcType=VARCHAR},
+		#{ datetime,jdbcType=VARCHAR},
+		#{ state,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<select id="checkOpenidFy" parameterType="com.mscs.app.web.model.RealName" resultType="java.lang.Integer">
+		select count(*) from t_jzg_fy where openid = #{openid}
+	</select>
+	
+	
+	<select id="checkOpenidNh" parameterType="com.mscs.app.web.model.RealName" resultType="java.lang.Integer">
+		select count(*) from t_jzg where openid = #{openid}
+	</select>
+	
+	<insert id="saveRealNameInfoNh" parameterType="com.mscs.app.web.model.RealName">
+		insert into t_jzg
+		(wid,xm,sfzjh,zgh,unionid,openid,headimgurl,nickname,language,country,province,city,csrq,state
+		)
+		values
+		(
+		#{wid,jdbcType=VARCHAR},
+		#{name,jdbcType=VARCHAR},
+		#{numberid,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{unionid,jdbcType=VARCHAR},
+		#{openid,jdbcType=VARCHAR},
+		#{headimgurl,jdbcType=VARCHAR},
+		#{nickname,jdbcType=VARCHAR},
+		#{language,jdbcType=VARCHAR},
+		#{country,jdbcType=VARCHAR},
+		#{province,jdbcType=VARCHAR},
+		#{city,jdbcType=VARCHAR},
+		#{csrq,jdbcType=VARCHAR},
+		#{state,jdbcType=VARCHAR}
+		)
+	</insert>
+	
+	<insert id="updateRealNameInfoNh" parameterType="com.mscs.app.web.model.RealName">
+		update t_jzg 
+		set xm = #{name,jdbcType=VARCHAR},sfzjh=#{numberid,jdbcType=VARCHAR},zgh=#{phone,jdbcType=VARCHAR},unionid=#{unionid,jdbcType=VARCHAR},
+		headimgurl=#{headimgurl,jdbcType=VARCHAR},nickname=#{nickname,jdbcType=VARCHAR},csrq=#{csrq,jdbcType=VARCHAR}
+		where openid = #{openid,jdbcType=VARCHAR}
+	</insert>
+</mapper>

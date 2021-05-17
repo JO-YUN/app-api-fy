@@ -1,0 +1,140 @@
+@charset "utf-8";
+#content {
+	margin-top: 44px;
+}
+
+.mui-bar-nav {
+	/*background: linear-gradient(#FF952A, #FFB756);*/
+	background: #1f7ebe;
+}
+
+.mui-bar-tab {
+	background: #1D70FE;
+	box-shadow: inset 0 0 0 0 rgba(0, 0, 0, 0.25);
+}
+
+.mui-title {
+	font-family: PingFangSC-Regular;
+	font-size: 18px;
+	color: #FFFFFF;
+	letter-spacing: -0.43px;
+}
+
+.mui-bar-tab .mui-tab-item.mui-active {
+	color: #ffffff;
+}
+
+.mui-bar .mui-btn-nav.mui-pull-left {
+	margin-left: 0;
+}
+
+.mui-bar-nav img {
+	height: 30px;
+	margin-top: 7px;
+}
+
+#myNavBar a {
+	touch-action: none;
+}
+
+.mui-bar-tab .mui-tab-item {
+	color: #ffffff;
+}
+.mui-content
+{
+  width:100%;
+  height:100%;
+  background:url(../img/hc/br.png)no-repeat;
+  position: absolute;
+  background-size: 100%100%;
+}
+
+div.transbox
+{
+  width:100%;
+  height:280px;
+  background-color:#000000;
+  background-color:#000;background: rgba(0, 0, 0, 0.7);
+  filter:alpha(opacity=60); /* IE8 及更早版本 */
+  position: absolute;
+  bottom: 0px;
+}
+
+div.transbox p
+{
+  margin:50px;
+  color:#ffffff;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.img1
+{
+  position: absolute;
+  bottom: 0px;
+  right:0px;
+  margin-bottom: 2px;
+  margin-right: 10px;
+  width: 360px;
+  height: 640px;
+}
+
+.img2{
+  position: absolute;
+  align:"center";
+  transform:scale(0.8);
+  left:0%;
+  top:0%;
+  display:none;
+}
+
+.imgdiv{
+  position: absolute;
+  z-index: 998;
+  width: 100%;
+  height:100%;
+  
+}
+
+.clickin{
+	float:right;
+	margin-right: 30px;
+	width:150px;
+	background: #1D70FE;
+	border:0;
+	opacity:1;
+	color:#ffffff;
+	z-index: 20;
+	font-size:18px;
+}
+.tabs{
+	margin-top: 10%;
+	margin-left:5%;
+}
+.tabdiv{
+	position:relative;
+	cursor:pointer;
+}
+.tab{	
+	height:80px;
+}
+.tabp{
+	font-size:20px;
+	color:#000000;
+	position:absolute;
+	top:34%;
+	left:120px;
+}
+.foot{
+	position:absolute;
+	bottom:0;
+	margin-left:5%;
+}
+.footp{
+	color: white;
+	font-size:22px;
+}
+.foott{
+	color: white;
+	font-size:15px;
+}
